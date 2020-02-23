@@ -1,6 +1,16 @@
-import { compose, withState, withHandlers, lifecycle } from "recompose";
+import {
+  compose,
+  withState,
+  withHandlers,
+  lifecycle,
+  branch,
+  renderComponent
+} from "recompose";
 import { withRouter } from "react-router-dom";
+import * as R from "ramda";
 import queryDefault from "../../utils/queryDefault";
+import axios from "../../core/libs/axios/axios";
+import Loading from "../Loading/index";
 
 export default compose(
   withRouter,
@@ -12,6 +22,8 @@ export default compose(
     "setDisplayLimitPage",
     queryDefault.displayLimit
   ),
+  withState("isLoading", "setIsLoading", true),
+  withState("queryData", "setQueryData", []),
   withHandlers({
     pushUrl: props => value => {
       const { limitPage, history } = props;
@@ -31,16 +43,44 @@ export default compose(
   }),
   lifecycle({
     async componentDidMount() {
-      const { history, currentPage, limitPage } = this.props;
+      const {
+        history,
+        currentPage,
+        limitPage,
+        schema,
+        location,
+        setQueryData,
+        setTotalPage
+      } = this.props;
+      const { search } = location;
       history.push(`?page=${currentPage}&limit=${limitPage}`);
+      const resp = await axios("GET", `${schema}${search}`);
+      setQueryData(R.path(["data", "data"], resp));
+      setTotalPage(R.path(["data", "total"], resp));
     },
     async componentDidUpdate(prevProps) {
-      // const { location } = prevProps;
-      // const { search } = location;
-      // console.log("search: ", this.props.location.search);
-      // console.log("prevSearch: ", prevProps.location.search);
-      // if (this.props.location.search !== prevProps.location.search) {
-      // }
+      const {
+        location,
+        setCurrentPage,
+        setTotalPage,
+        schema,
+        setQueryData
+      } = this.props;
+      const { search } = location;
+      if (prevProps.location.search !== search) {
+        const resp = await axios("GET", `${schema}${search}`);
+        setQueryData(R.path(["data", "data"], resp));
+        setCurrentPage(search.substring(6, 7));
+        setTotalPage(R.path(["data", "total"], resp));
+      }
     }
-  })
+  }),
+  branch(props => {
+    const { queryData } = props;
+    if (props.isLoading === true && R.isEmpty(queryData)) {
+      return true;
+    } else {
+      return false;
+    }
+  }, renderComponent(Loading))
 );

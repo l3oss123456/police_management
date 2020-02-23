@@ -12,14 +12,14 @@ const StyledSearch = styled.div`
 `;
 
 const SearchComponent = props => {
-  const { debounceSearchValue, pushSearchUrl } = props;
+  const { pushSearchUrl } = props;
   return (
     <StyledContainerSearch>
       <StyledSearch width="280px">
         <Input
           autoFocus
           placeholder="Search"
-          onChange={e => debounceSearchValue(e.target.value)}
+          // onChange={e => debounceSearchValue(e.target.value)}
           onPressEnter={e => pushSearchUrl(e.target.value)}
         />
       </StyledSearch>

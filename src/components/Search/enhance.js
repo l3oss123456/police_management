@@ -1,20 +1,29 @@
-import { compose, withState, withHandlers } from "recompose";
-import { debounce } from "debounce";
+import { compose, withHandlers } from "recompose";
+import { withRouter } from "react-router-dom";
+import qs from "qs";
+import * as R from "ramda";
+import objectToQueryString from "../../utils/queryString";
+import queryDefault from "../../utils/queryDefault";
 
 export default compose(
-  withState("searchValue", "setSearchValue", ""),
+  withRouter,
   withHandlers({
-    pushSearchUrl: props => async () => {
-      const { searchValue } = props;
-      console.log("searchValue: ", searchValue);
+    pushSearchUrl: props => async searchValue => {
+      const { history, location } = props;
+      const oldQs = qs.parse(location.search, {
+        ignoreQueryPrefix: true
+      });
+      const searchOptions = objectToQueryString({
+        search: searchValue
+        // selected: selectValue,
+        // duration: rangeDate && JSON.stringify(rangeDate)
+      });
+      queryDefault.search = searchOptions;
+      var newQs = "";
+      R.isEmpty(searchOptions)
+        ? (newQs = `?page=${oldQs.page}&limit=${oldQs.limit}`)
+        : (newQs = `?page=${oldQs.page}&limit=${oldQs.limit}&${searchOptions}`);
+      history.push(newQs);
     }
-  }),
-  withHandlers({
-    debounceSearchValue: props =>
-      debounce(e => {
-        const { setSearchValue, pushSearchUrl } = props;
-        setSearchValue(e);
-        pushSearchUrl();
-      }, 1000)
   })
 );

@@ -24,6 +24,7 @@ const ComponentPagination = props => {
     limitPage,
     displayLimitPage,
     changeLimitedPage,
+    totalPage,
     pushUrl,
     currentPage
   } = props;
@@ -48,8 +49,7 @@ const ComponentPagination = props => {
           onChange={pushUrl}
           defaultCurrent={currentPage}
           pageSize={limitPage}
-          // total={totalPage}
-          total={100}
+          total={totalPage}
         />
       </ContainerElement>
     </ContainerPagination>

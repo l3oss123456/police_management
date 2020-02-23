@@ -26,19 +26,24 @@ const ScrollStyled = styled.div`
 
 const columns = [
   {
-    title: "Name",
-    dataIndex: "name",
-    key: "name"
+    title: "firstname",
+    dataIndex: "firstName",
+    key: "firstname"
   },
   {
-    title: "Age",
-    dataIndex: "age",
-    key: "age"
+    title: "lastname",
+    dataIndex: "lastName",
+    key: "lastname"
   },
   {
-    title: "Address",
-    dataIndex: "address",
-    key: "address"
+    title: "position",
+    dataIndex: "position",
+    key: "position"
+  },
+  {
+    title: "username",
+    dataIndex: "username",
+    key: "username"
   },
   {
     // title: "Operation",
@@ -71,17 +76,18 @@ const ListingTable = props => {
     totalPage,
     displayLimitPage,
     changeLimitedPage,
-    pushUrl
+    pushUrl,
+    queryData
   } = props;
-  const dataSource = [];
-  for (let i = 1; i <= 100; i++) {
-    dataSource.push({
-      key: i,
-      name: `Edward King ${i}`,
-      age: 10 + i,
-      address: `London, Park Lane no. ${i}`
-    });
-  }
+  // const dataSource = [];
+  // for (let i = 1; i <= 100; i++) {
+  //   dataSource.push({
+  //     key: i,
+  //     name: `Edward King ${i}`,
+  //     age: 10 + i,
+  //     address: `London, Park Lane no. ${i}`
+  //   });
+  // }
   return (
     <ContainerListingTable>
       <ScrollStyled
@@ -90,7 +96,7 @@ const ListingTable = props => {
       >
         <Table
           columns={columns}
-          dataSource={dataSource}
+          dataSource={queryData}
           // pagination={{ pageSize: 10 }}
           pagination={false}
           // scroll={{ y: window.innerHeight - 385 + "px" }}
