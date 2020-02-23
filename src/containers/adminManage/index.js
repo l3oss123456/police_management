@@ -12,7 +12,7 @@ const adminManage = props => {
         selectedKey="adminManagement"
         openKey="management"
       >
-        <Search />
+        <Search schema="officers" />
         <Table
           schema="officers"
           tableColumns={columns}

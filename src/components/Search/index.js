@@ -12,20 +12,25 @@ const StyledSearch = styled.div`
 `;
 
 const SearchComponent = props => {
-  const { pushSearchUrl } = props;
+  const { pushSearchUrl, schema, history } = props;
   return (
     <StyledContainerSearch>
       <StyledSearch width="280px">
         <Input
           autoFocus
-          placeholder="Search"
+          placeholder="search"
           // onChange={e => debounceSearchValue(e.target.value)}
           onPressEnter={e => pushSearchUrl(e.target.value)}
         />
       </StyledSearch>
       <StyledSearch>
-        <Button icon="search" onClick={e => pushSearchUrl()}>
-          Search
+        <Button icon="search" onClick={() => pushSearchUrl()}>
+          search
+        </Button>
+      </StyledSearch>
+      <StyledSearch>
+        <Button icon="plus" onClick={() => history.push(`/${schema}/create`)}>
+          add {schema}
         </Button>
       </StyledSearch>
     </StyledContainerSearch>
