@@ -10,7 +10,7 @@ const menu = [
     key: "2",
     name: "admin menu 2",
     iconType: "user",
-    link: "/",
+    link: "/adminMenu2",
     userRole: "admin"
   },
   {
@@ -22,7 +22,7 @@ const menu = [
       {
         key: "adminManagement",
         name: "Admin Manage",
-        link: "/adminManage",
+        link: "/",
         iconType: "user"
       },
       {

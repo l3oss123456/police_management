@@ -1,3 +1,4 @@
+import React from "react";
 import {
   compose,
   withState,
@@ -6,11 +7,24 @@ import {
   branch,
   renderComponent
 } from "recompose";
+import styled from "styled-components";
+import { Popconfirm, Icon } from "antd";
 import { withRouter } from "react-router-dom";
 import * as R from "ramda";
+// import setNewColumns from "./setNewColumns";
 import queryDefault from "../../utils/queryDefault";
 import axios from "../../core/libs/axios/axios";
 import Loading from "../Loading/index";
+import displayNotification from "../../utils/notification";
+
+const ContainerOperation = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 90px;
+`;
+const IconStyled = styled(Icon)`
+  font-size: 20px;
+`;
 
 export default compose(
   withRouter,
@@ -24,6 +38,7 @@ export default compose(
   ),
   withState("isLoading", "setIsLoading", true),
   withState("queryData", "setQueryData", []),
+  withState("columns", "setColumns", []),
   withHandlers({
     pushUrl: props => value => {
       const { limitPage, history } = props;
@@ -39,8 +54,42 @@ export default compose(
       search
         ? history.push(`?page=${currentPage}&limit=${value}&search=${search}`)
         : history.push(`?page=${currentPage}&limit=${value}`);
+    },
+    setNewColumns: props => () => {
+      const { tableColumns, history, schema } = props;
+      const handleDelete = async (index, id) => {
+        const { queryData, setQueryData } = props;
+        await axios("DELETE", `${schema}/${id}`);
+        queryData.splice(index, 1);
+        setQueryData(queryData);
+        displayNotification("success", "Delete Successful");
+      };
+      return [
+        ...tableColumns,
+        {
+          dataIndex: "operation",
+          render: (text, record, index) => {
+            return (
+              <ContainerOperation>
+                <IconStyled
+                  type="edit"
+                  theme="twoTone"
+                  onClick={() => history.push(`/${schema}/${record.id}/edit`)}
+                />
+                <Popconfirm
+                  title="Sure to delete?"
+                  onConfirm={() => handleDelete(index, record.username)}
+                >
+                  <IconStyled type="delete" theme="twoTone" />
+                </Popconfirm>
+              </ContainerOperation>
+            );
+          }
+        }
+      ];
     }
   }),
+
   lifecycle({
     async componentDidMount() {
       const {
@@ -50,12 +99,16 @@ export default compose(
         schema,
         location,
         setQueryData,
-        setTotalPage
+        setTotalPage,
+        setColumns,
+        setNewColumns
       } = this.props;
       const { search } = location;
       history.push(`?page=${currentPage}&limit=${limitPage}`);
       const resp = await axios("GET", `${schema}${search}`);
+      // setColumns(setNewColumns(tableColumns, schema, history, setQueryData));
       setQueryData(R.path(["data", "data"], resp));
+      setColumns(setNewColumns());
       setTotalPage(R.path(["data", "total"], resp));
     },
     async componentDidUpdate(prevProps) {

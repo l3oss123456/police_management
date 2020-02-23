@@ -8,7 +8,8 @@ const http = async (method, pathUrl, body) => {
       data: body,
       method,
       headers: {
-        Authorization: ""
+        Authorization: "",
+        "content-type": "application/json"
       }
     });
     return resp;
