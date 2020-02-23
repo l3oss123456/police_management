@@ -5,6 +5,7 @@ import Login from "../../containers/login/index";
 // import Management from "../../containers/management/index";
 import Dashboard from "../../containers/dashboard/index";
 import adminManage from "../../containers/adminManage/index";
+import addAdmin from "../../containers/adminManage/components/addAdmin/index";
 import editAdmin from "../../containers/adminManage/components/editAdmin/index";
 import userManage from "../../containers/userManage/index";
 
@@ -22,6 +23,12 @@ const Routes = () => {
           type="admin"
         />
         <GuardRoutes exact path="/" component={adminManage} type="admin" />
+        <GuardRoutes
+          exact
+          path="/officers/create"
+          component={addAdmin}
+          type="admin"
+        />
         <GuardRoutes
           exact
           path="/officers/:_id/edit"
