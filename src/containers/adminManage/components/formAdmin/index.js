@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../../../components/Layout/index";
 import { Form, Row, Button } from "antd";
+import * as R from "ramda";
 import styled from "styled-components";
 import FormAdminInformation from "./formAdminInformation/index";
 import enhance from "./enhance";
@@ -62,14 +63,16 @@ const formAdmin = props => {
     setSelectedPosition,
     selectedRole,
     setSelectedRole,
+    queryData,
     form,
     history,
-    insertOfficer
+    insertOfficer,
+    editOfficer
   } = props;
   return (
     <Layout userRole="admin" selectedKey="adminManagement" openKey="management">
       <Container>
-        <Title>Officers /</Title>
+        <Title>พนักงาน /</Title>
         <Section>
           <FormAdminInformation
             form={form}
@@ -79,6 +82,7 @@ const formAdmin = props => {
             selectedPosition={selectedPosition}
             setSelectedRole={setSelectedRole}
             selectedRole={selectedRole}
+            queryData={queryData}
           />
         </Section>
       </Container>
@@ -86,10 +90,17 @@ const formAdmin = props => {
       <Footer>
         <ContainerFooterBtn>
           <StyledButtonCancel onClick={() => history.push("/")}>
-            Cancel
+            ยกเลิก
           </StyledButtonCancel>
-          <StyledButtonSave onClick={e => insertOfficer(e, form)}>
-            Save
+          <StyledButtonSave
+            // onClick={e => insertOfficer(e, form)}
+            onClick={e =>
+              R.isEmpty(queryData)
+                ? insertOfficer(e, form)
+                : editOfficer(e, form)
+            }
+          >
+            บันทึก
           </StyledButtonSave>
         </ContainerFooterBtn>
       </Footer>

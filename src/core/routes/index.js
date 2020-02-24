@@ -31,7 +31,7 @@ const Routes = () => {
         />
         <GuardRoutes
           exact
-          path="/officers/:_id/edit"
+          path="/officers/:id/edit"
           component={editAdmin}
           type="admin"
         />

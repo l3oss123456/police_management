@@ -25,6 +25,7 @@ const IconStyled = styled(Icon)`
   font-size: ${props => (props.width: "")};
   margin-right: ${props => (props.marginRight: "")};
 `;
+
 const dropdownMenu = (
   <div>
     <Popconfirm
@@ -69,7 +70,7 @@ const HeaderLayout = props => {
               <IconStyled type="user" marginRight="5px" width="25px" />
             </div>
             <div>
-              Suphasorn Udomphan
+              สุภสร อุดมพันธ์
               <Icon type="down" style={{ marginLeft: "5px" }} />
             </div>
           </ContainerInfo>
