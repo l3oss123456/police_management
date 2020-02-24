@@ -1,5 +1,6 @@
 import React from "react";
 import { Form, Input, Row, Col } from "antd";
+import * as R from "ramda";
 import styled from "styled-components";
 import Select from "../../../../../components/Select/index";
 
@@ -20,21 +21,26 @@ const formAdminInformation = props => {
     setSelectedPosition,
     selectedPosition,
     setSelectedRole,
-    selectedRole
+    selectedRole,
+    queryData
   } = props;
   const { getFieldDecorator } = form;
+  const firstName = R.pathOr("", ["firstName"], queryData);
+  const lastName = R.pathOr("", ["lastName"], queryData);
+  const username = R.pathOr("", ["username"], queryData);
+  const password = R.pathOr("", ["password"], queryData);
   return (
     <div>
-      <SectionHeader>Officers Information</SectionHeader>
+      <SectionHeader>ข้อมูลพนักงาน</SectionHeader>
       <SectionContent>
         <Row>
           <Col span={1} md={3} style={{ paddingTop: "8px" }}>
-            First Name :
+            ชื่อ :
           </Col>
           <Col span={16} md={18}>
             <Form.Item style={{ width: "90%" }}>
               {getFieldDecorator("firstName", {
-                // initialValue: R.path(["voucherName"], props),
+                initialValue: firstName,
                 rules: [
                   {
                     required: true,
@@ -53,12 +59,12 @@ const formAdminInformation = props => {
 
         <Row>
           <Col span={1} md={3} style={{ paddingTop: "8px" }}>
-            Last Name :
+            นามสกุล :
           </Col>
           <Col span={16} md={18}>
             <Form.Item style={{ width: "90%" }}>
               {getFieldDecorator("lastName", {
-                // initialValue: R.path(["voucherName"], props),
+                initialValue: lastName,
                 rules: [
                   {
                     required: true,
@@ -77,12 +83,12 @@ const formAdminInformation = props => {
 
         <Row>
           <Col span={1} md={3} style={{ paddingTop: "8px" }}>
-            Username :
+            ชื่อผู้ใช้งาน :
           </Col>
           <Col span={16} md={18}>
             <Form.Item style={{ width: "90%" }}>
               {getFieldDecorator("username", {
-                // initialValue: R.path(["voucherName"], props),
+                initialValue: username,
                 rules: [
                   {
                     required: true,
@@ -101,12 +107,12 @@ const formAdminInformation = props => {
 
         <Row>
           <Col span={1} md={3} style={{ paddingTop: "8px" }}>
-            Password :
+            รหัสผ่าน :
           </Col>
           <Col span={16} md={18}>
             <Form.Item style={{ width: "90%" }}>
               {getFieldDecorator("password", {
-                // initialValue: R.path(["voucherName"], props),
+                initialValue: password,
                 rules: [
                   {
                     required: true,
@@ -125,7 +131,7 @@ const formAdminInformation = props => {
 
         <Row>
           <Col span={1} md={3} style={{ paddingTop: "5px" }}>
-            Position :
+            ตำแหน่ง :
           </Col>
           <Col span={16} md={18}>
             <Select
@@ -139,7 +145,7 @@ const formAdminInformation = props => {
 
         <Row style={{ paddingTop: "30px" }}>
           <Col span={1} md={3} style={{ paddingTop: "5px" }}>
-            Role :
+            สิทธิ :
           </Col>
           <Col span={16} md={18}>
             <Select

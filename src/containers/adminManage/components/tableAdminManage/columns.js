@@ -1,21 +1,21 @@
 const columns = [
   {
-    title: "firstname",
+    title: "ชื่อ",
     dataIndex: "firstName",
     key: "firstname"
   },
   {
-    title: "lastname",
+    title: "นามสกุล",
     dataIndex: "lastName",
     key: "lastname"
   },
   {
-    title: "position",
+    title: "ตำแหน่ง",
     dataIndex: "position",
     key: "position"
   },
   {
-    title: "username",
+    title: "ชื่อผู้ใช้งาน",
     dataIndex: "username",
     key: "username"
   }

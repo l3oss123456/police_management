@@ -32,7 +32,7 @@ const ComponentPagination = props => {
     <ContainerPagination>
       <ContainerElement>
         <Text marginRight marginTop>
-          Per Page :
+          แสดงข้อมูล (ต่อหน้า) :
         </Text>
         <Select
           defaultData={limitPage}
@@ -40,7 +40,7 @@ const ComponentPagination = props => {
           selected={changeLimitedPage}
           width="60px"
         />
-        <Text marginLeft marginTop>{`Show ${limitPage} of 
+        <Text marginLeft marginTop>{`แสดง ${limitPage} จาก 
         ${displayLimitPage[displayLimitPage.length - 1]}`}</Text>
       </ContainerElement>
 

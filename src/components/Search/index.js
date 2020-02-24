@@ -12,25 +12,25 @@ const StyledSearch = styled.div`
 `;
 
 const SearchComponent = props => {
-  const { pushSearchUrl, schema, history } = props;
+  const { pushSearchUrl, schema, addBtnText, history } = props;
   return (
     <StyledContainerSearch>
       <StyledSearch width="280px">
         <Input
           autoFocus
-          placeholder="search"
+          placeholder="ค้นหาข้อมูล"
           // onChange={e => debounceSearchValue(e.target.value)}
           onPressEnter={e => pushSearchUrl(e.target.value)}
         />
       </StyledSearch>
       <StyledSearch>
         <Button icon="search" onClick={() => pushSearchUrl()}>
-          search
+          ค้นหา
         </Button>
       </StyledSearch>
       <StyledSearch>
         <Button icon="plus" onClick={() => history.push(`/${schema}/create`)}>
-          add {schema}
+          {addBtnText}
         </Button>
       </StyledSearch>
     </StyledContainerSearch>
