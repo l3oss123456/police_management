@@ -59,7 +59,7 @@ export default compose(
           };
           await axios("PUT", `officers/${id}`, data);
           history.push("/");
-          displayNotification("success", "Create Successful");
+          displayNotification("success", "Edit Successful");
         }
       });
     }
