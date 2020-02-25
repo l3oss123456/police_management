@@ -1,13 +1,12 @@
 import React from "react";
+import Layout from "../../../../components/Layout/index";
 import FormAdmin from "../formAdmin/index";
-// import axios from "../../../../core/libs/axios/axios";
 
 const editAdmin = props => {
-  // const resp = await axios("GET", `/officers`);
   return (
-    <div>
+    <Layout userRole="admin" selectedKey="adminManagement" openKey="management">
       <FormAdmin />
-    </div>
+    </Layout>
   );
 };
 export default editAdmin;
