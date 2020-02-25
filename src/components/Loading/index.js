@@ -1,5 +1,5 @@
 import React from "react";
-import { Spin } from "antd";
+import { Spin, Icon } from "antd";
 import styled from "styled-components";
 
 const ContainerSpin = styled.div`
@@ -13,10 +13,10 @@ const ContainerSpin = styled.div`
 const Loading = () => {
   return (
     <ContainerSpin
-      width={window.innerWidth - 385}
+      width={window.innerWidth - 345}
       height={window.innerHeight - 205}
     >
-      <Spin size="large" />
+      <Spin indicator={<Icon type="loading" style={{ fontSize: 44 }} spin />} />
     </ContainerSpin>
   );
 };

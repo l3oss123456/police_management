@@ -1,5 +1,4 @@
 import React from "react";
-import Layout from "../../../../components/Layout/index";
 import { Form, Row, Button } from "antd";
 import * as R from "ramda";
 import styled from "styled-components";
@@ -26,7 +25,6 @@ const Footer = styled.div`
   position: sticky;
   width: 100%;
   height: 64px;
-  bottom: 0;
 `;
 const StyledButtonCancel = styled(Button)`
   width: 130px;
@@ -70,7 +68,7 @@ const formAdmin = props => {
     editOfficer
   } = props;
   return (
-    <Layout userRole="admin" selectedKey="adminManagement" openKey="management">
+    <div>
       <Container>
         <Title>พนักงาน /</Title>
         <Section>
@@ -93,7 +91,6 @@ const formAdmin = props => {
             ยกเลิก
           </StyledButtonCancel>
           <StyledButtonSave
-            // onClick={e => insertOfficer(e, form)}
             onClick={e =>
               R.isEmpty(queryData)
                 ? insertOfficer(e, form)
@@ -104,7 +101,7 @@ const formAdmin = props => {
           </StyledButtonSave>
         </ContainerFooterBtn>
       </Footer>
-    </Layout>
+    </div>
   );
 };
 export default enhance(Form.create()(formAdmin));
