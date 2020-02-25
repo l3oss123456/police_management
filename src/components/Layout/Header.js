@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout, Icon, Dropdown, Button, Popconfirm } from "antd";
-import { Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { clearItem } from "../../core/storage/index";
 
@@ -26,57 +26,67 @@ const IconStyled = styled(Icon)`
   margin-right: ${props => (props.marginRight: "")};
 `;
 
-const dropdownMenu = (
-  <div>
-    <Popconfirm
-      title="Sure to exit ?"
-      okText="Yes"
-      cancelText="No"
-      onConfirm={() => {
-        clearItem();
-        return <Redirect to={{ pathname: "/Login" }} />;
-      }}
-    >
-      <LogoutBtn>
-        <div>
-          <Icon type="logout" />
-        </div>
-        <div>Log out</div>
-      </LogoutBtn>
-    </Popconfirm>
-  </div>
-);
-
 const HeaderLayout = props => {
   const { isCollap, setIsCollap } = props;
+  const [isLogout, setIsLogout] = useState(false);
+
+  const dropdownMenu = (
+    <div>
+      <Popconfirm
+        title="Sure to exit ?"
+        okText="Yes"
+        cancelText="No"
+        onConfirm={() => {
+          clearItem();
+          setIsLogout(true);
+        }}
+      >
+        <LogoutBtn>
+          <div>
+            <Icon type="logout" />
+          </div>
+          <div>Log out</div>
+        </LogoutBtn>
+      </Popconfirm>
+    </div>
+  );
   return (
-    <Header
-      style={{
-        background: "#fff",
-        padding: 0
-      }}
-    >
-      <ContainerHeader>
-        <div>
-          <IconStyled
-            type={isCollap ? "menu-unfold" : "menu-fold"}
-            onClick={e => setIsCollap(!isCollap)}
-            width="25px"
-          />
-        </div>
-        <Dropdown overlay={dropdownMenu}>
-          <ContainerInfo>
-            <div>
-              <IconStyled type="user" marginRight="5px" width="25px" />
-            </div>
-            <div>
-              สุภสร อุดมพันธ์
-              <Icon type="down" style={{ marginLeft: "5px" }} />
-            </div>
-          </ContainerInfo>
-        </Dropdown>
-      </ContainerHeader>
-    </Header>
+    <>
+      {isLogout && (
+        <Redirect
+          to={{
+            pathname: "/Login"
+          }}
+        />
+      )}
+      <Header
+        style={{
+          background: "#fff",
+          padding: 0
+        }}
+      >
+        <ContainerHeader>
+          <div>
+            <IconStyled
+              type={isCollap ? "menu-unfold" : "menu-fold"}
+              onClick={e => setIsCollap(!isCollap)}
+              width="25px"
+            />
+          </div>
+          <Dropdown overlay={dropdownMenu}>
+            <ContainerInfo>
+              <div>
+                <IconStyled type="user" marginRight="5px" width="25px" />
+              </div>
+              <div>
+                สุภสร อุดมพันธ์
+                <Icon type="down" style={{ marginLeft: "5px" }} />
+              </div>
+            </ContainerInfo>
+          </Dropdown>
+        </ContainerHeader>
+      </Header>
+    </>
   );
 };
-export default HeaderLayout;
+export default withRouter(HeaderLayout);

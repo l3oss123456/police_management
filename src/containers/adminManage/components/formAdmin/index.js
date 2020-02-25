@@ -29,8 +29,9 @@ const Footer = styled.div`
 const StyledButtonCancel = styled(Button)`
   width: 130px;
   &:hover {
-    border-color: red;
-    color: red;
+    border-color: #9c9c9c;
+    color: white;
+    color: black;
   }
 `;
 const StyledButtonSave = styled(Button)`
