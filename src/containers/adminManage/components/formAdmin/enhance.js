@@ -9,23 +9,30 @@ import {
 import { withRouter } from "react-router-dom";
 import * as R from "ramda";
 import axios from "../../../../core/libs/axios/axios";
+import position from "../../../../utils/policePosition";
 import displayNotification from "../../../../utils/notification";
 import Loading from "../../../../components/Loading/index";
 
 export default compose(
   withRouter,
-  withState("allPosition", "setAllPosition", []),
+  withState("allPosition", "setAllPosition", position),
   withState("selectedPosition", "setSelectedPosition", ""),
-  withState("allRole", "setAllRole", []),
+  withState("allRole", "setAllRole", ["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]),
   withState("selectedRole", "setSelectedRole", ""),
   withState("queryData", "setQueryData", {}),
   withState("isLoading", "setIsLoading", true),
+  withState("respStatus", "setRespStatus", ""),
   withHandlers({
     insertOfficer: props => (e, form) => {
       e.preventDefault();
       form.validateFields(async (err, values) => {
         if (!err) {
-          const { selectedPosition, selectedRole, history } = props;
+          const {
+            selectedPosition,
+            selectedRole,
+            history,
+            setRespStatus
+          } = props;
           const { getFieldValue } = form;
           const data = {
             username: getFieldValue("username"),
@@ -35,9 +42,17 @@ export default compose(
             position: selectedPosition,
             role: selectedRole
           };
-          await axios("POST", "officers", data);
-          history.push("management/admin");
-          displayNotification("success", "Create Successful");
+          const resp = await axios("POST", "officers", data);
+          if (resp.data.statusCode !== 200) {
+            setRespStatus(resp.data.statusCode);
+            displayNotification(
+              "error",
+              "ชื่อผู้ใช้งานหรือรหัสผ่าน มีอยู่ในระบบแล้ว"
+            );
+          } else {
+            history.push("/management/admin");
+            displayNotification("success", "เพิ่มข้อมูลสำเร็จ");
+          }
         }
       });
     },
@@ -58,7 +73,7 @@ export default compose(
             role: selectedRole
           };
           await axios("PUT", `officers/${id}`, data);
-          history.push("management/admin");
+          history.push("/management/admin");
           displayNotification("success", "Edit Successful");
         }
       });
@@ -67,27 +82,21 @@ export default compose(
   lifecycle({
     async componentDidMount() {
       const {
-        setAllPosition,
         setSelectedPosition,
         setAllRole,
         setSelectedRole,
         setQueryData,
         setIsLoading,
-        match
+        match,
+        allRole,
+        allPosition
       } = this.props;
       const id = R.pathOr("", ["params", "id"], match);
-      const position = ["root1", "root2"];
-      setAllPosition(position);
-      const role = [
-        "แอดมิน",
-        "ผู้ใช้งาน (ไม่สามารถแก้ไขข้อมูลได้)",
-        "ผู้ใช้งาน (สามารถแก้ไขข้อมูลได้)"
-      ];
-      setAllRole(role);
+      setAllRole(allRole);
       var resp;
       return R.isEmpty(id)
-        ? (setSelectedPosition(position[0]),
-          setSelectedRole(role[0]),
+        ? (setSelectedPosition(allPosition[0]),
+          setSelectedRole(allRole[0]),
           setIsLoading(false))
         : ((resp = await axios("GET", `officers/${id}`)),
           setQueryData(R.path(["data", "data"], resp)),

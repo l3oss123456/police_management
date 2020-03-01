@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { Layout, Icon, Dropdown, Button, Popconfirm } from "antd";
 import { withRouter, Redirect } from "react-router-dom";
 import styled from "styled-components";
+import * as R from "ramda";
 import { clearItem } from "../../core/storage/index";
+import { getItemLocalStorage } from "../../core/storage/index";
 
 const { Header } = Layout;
 const ContainerHeader = styled.div`
@@ -50,6 +52,11 @@ const HeaderLayout = props => {
       </Popconfirm>
     </div>
   );
+  const name = R.pathOr(
+    "",
+    ["name"],
+    JSON.parse(getItemLocalStorage("userInfo"))
+  );
   return (
     <>
       {isLogout && (
@@ -79,7 +86,7 @@ const HeaderLayout = props => {
                 <IconStyled type="user" marginRight="5px" width="25px" />
               </div>
               <div>
-                สุภสร อุดมพันธ์
+                {name}
                 <Icon type="down" style={{ marginLeft: "5px" }} />
               </div>
             </ContainerInfo>

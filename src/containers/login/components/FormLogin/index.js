@@ -43,7 +43,7 @@ const FormLogin = props => {
                 />
                 {respStatus === 400 && (
                   <StyledWarining>
-                    Please Check your username again
+                    กรุณาตรวจสอบชื่อผู้ใช้งานอีกครั้ง !
                   </StyledWarining>
                 )}
               </div>
@@ -72,7 +72,7 @@ const FormLogin = props => {
                 />
                 {respStatus === 400 && (
                   <StyledWarining>
-                    Please Check your password again
+                    กรุณาตรวจสอบรหัสผ่านอีกครั้ง !
                   </StyledWarining>
                 )}
               </div>

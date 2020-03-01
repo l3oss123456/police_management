@@ -22,13 +22,13 @@ const menu = [
       {
         key: "adminManagement",
         name: "Admin Manage",
-        link: "/",
+        link: "/management/admin",
         iconType: "user"
       },
       {
         key: "userManagement",
         name: "User Manage",
-        link: "/userManage",
+        link: "/management/user",
         iconType: "user"
       }
     ]

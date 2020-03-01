@@ -63,7 +63,8 @@ const formAdmin = props => {
     form,
     history,
     insertOfficer,
-    editOfficer
+    editOfficer,
+    respStatus
   } = props;
   return (
     <div>
@@ -79,6 +80,7 @@ const formAdmin = props => {
             setSelectedRole={setSelectedRole}
             selectedRole={selectedRole}
             queryData={queryData}
+            respStatus={respStatus}
           />
         </Section>
       </Container>

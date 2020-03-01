@@ -1,6 +1,8 @@
 import React from "react";
 import { Input, Button } from "antd";
 import styled from "styled-components";
+import * as R from "ramda";
+import { getItemLocalStorage } from "../../core/storage/index";
 import enhance from "./enhance";
 
 const StyledContainerSearch = styled.div`
@@ -13,6 +15,7 @@ const StyledSearch = styled.div`
 
 const SearchComponent = props => {
   const { pushSearchUrl, pathUrl, addBtnText, history } = props;
+  const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
   return (
     <StyledContainerSearch>
       <StyledSearch width="280px">
@@ -28,11 +31,16 @@ const SearchComponent = props => {
           ค้นหา
         </Button>
       </StyledSearch>
-      <StyledSearch>
-        <Button icon="plus" onClick={() => history.push(`/${pathUrl}/create`)}>
-          {addBtnText}
-        </Button>
-      </StyledSearch>
+      {role === "แอดมิน" && (
+        <StyledSearch>
+          <Button
+            icon="plus"
+            onClick={() => history.push(`/${pathUrl}/create`)}
+          >
+            {addBtnText}
+          </Button>
+        </StyledSearch>
+      )}
     </StyledContainerSearch>
   );
 };
