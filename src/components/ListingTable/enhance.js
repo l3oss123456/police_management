@@ -14,6 +14,7 @@ import * as R from "ramda";
 import queryDefault from "../../utils/queryDefault";
 import axios from "../../core/libs/axios/axios";
 import Loading from "../Loading/index";
+import { getItemLocalStorage } from "../../core/storage/index";
 import displayNotification from "../../utils/notification";
 
 const ContainerOperation = styled.div`
@@ -63,25 +64,34 @@ export default compose(
         setQueryData(queryData);
         displayNotification("success", "Delete Successful");
       };
+
+      const role = R.path(
+        ["role"],
+        JSON.parse(getItemLocalStorage("userInfo"))
+      );
       return [
         ...tableColumns,
         {
           dataIndex: "operation",
           render: (text, record, index) => {
             return (
-              <ContainerOperation>
-                <IconStyled
-                  type="edit"
-                  theme="twoTone"
-                  onClick={() => history.push(`/${path}/${record.id}/edit`)}
-                />
-                <Popconfirm
-                  title="Sure to delete?"
-                  onConfirm={() => handleDelete(index, record.username)}
-                >
-                  <IconStyled type="delete" theme="twoTone" />
-                </Popconfirm>
-              </ContainerOperation>
+              <div>
+                {role !== "ผู้อ่าน" && (
+                  <ContainerOperation>
+                    <IconStyled
+                      type="edit"
+                      theme="twoTone"
+                      onClick={() => history.push(`/${path}/${record.id}/edit`)}
+                    />
+                    <Popconfirm
+                      title="Sure to delete?"
+                      onConfirm={() => handleDelete(index, record.id)}
+                    >
+                      <IconStyled type="delete" theme="twoTone" />
+                    </Popconfirm>
+                  </ContainerOperation>
+                )}
+              </div>
             );
           }
         }

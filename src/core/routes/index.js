@@ -20,31 +20,32 @@ const Routes = () => {
           exact
           path="/dashboard"
           component={Dashboard}
-          type="admin"
+          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
         <GuardRoutes
           exact
           path="/management/admin"
           component={adminManage}
-          type="admin"
+          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
         <GuardRoutes
           exact
           path="/management/admin/create"
           component={addAdmin}
-          type="admin"
+          // allowRole="admin"
+          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
         <GuardRoutes
           exact
           path="/management/admin/:id/edit"
           component={editAdmin}
-          type="admin"
+          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
         <GuardRoutes
           exact
           path="/management/user"
           component={userManage}
-          type="admin"
+          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
       </Switch>
     </Router>

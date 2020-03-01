@@ -12,6 +12,10 @@ const SectionHeader = styled.h3`
 const SectionContent = styled.div`
   padding: 20px;
 `;
+const StyledWarining = styled.div`
+  color: red;
+  font-size: 13px;
+`;
 
 const formAdminInformation = props => {
   const {
@@ -22,7 +26,8 @@ const formAdminInformation = props => {
     selectedPosition,
     setSelectedRole,
     selectedRole,
-    queryData
+    queryData,
+    respStatus
   } = props;
   const { getFieldDecorator } = form;
   const firstName = R.pathOr("", ["firstName"], queryData);
@@ -47,12 +52,7 @@ const formAdminInformation = props => {
                     message: "Please Input First Name"
                   }
                 ]
-              })(
-                <Input
-                  type="text"
-                  //   onChange={e => props.setDisplayVoucherName(e.target.value)}
-                />
-              )}
+              })(<Input type="text" />)}
             </Form.Item>
           </Col>
         </Row>
@@ -71,39 +71,42 @@ const formAdminInformation = props => {
                     message: "Please Input Last Name"
                   }
                 ]
-              })(
-                <Input
-                  type="text"
-                  //   onChange={e => props.setDisplayVoucherName(e.target.value)}
-                />
-              )}
+              })(<Input type="text" />)}
             </Form.Item>
           </Col>
         </Row>
 
-        <Row>
-          <Col span={1} md={3} style={{ paddingTop: "8px" }}>
-            ชื่อผู้ใช้งาน :
-          </Col>
-          <Col span={16} md={18}>
-            <Form.Item style={{ width: "90%" }}>
-              {getFieldDecorator("username", {
-                initialValue: username,
-                rules: [
-                  {
-                    required: true,
-                    message: "Please Input Username"
-                  }
-                ]
-              })(
-                <Input
-                  type="text"
-                  //   onChange={e => props.setDisplayVoucherName(e.target.value)}
-                />
-              )}
-            </Form.Item>
-          </Col>
-        </Row>
+        {username === "" && (
+          <Row>
+            <Col span={1} md={3} style={{ paddingTop: "8px" }}>
+              ชื่อผู้ใช้งาน :
+            </Col>
+            <Col span={16} md={18}>
+              <Form.Item style={{ width: "90%" }}>
+                {getFieldDecorator("username", {
+                  initialValue: username,
+                  rules: [
+                    {
+                      required: true,
+                      message: "Please Input Username"
+                    }
+                  ]
+                })(
+                  respStatus === 400 ? (
+                    <div>
+                      <Input type="text" />
+                      <StyledWarining>
+                        ชื่อผู้ใช้งานนี้มีอยู่ในระบบแล้ว !
+                      </StyledWarining>
+                    </div>
+                  ) : (
+                    <Input type="text" />
+                  )
+                )}
+              </Form.Item>
+            </Col>
+          </Row>
+        )}
 
         <Row>
           <Col span={1} md={3} style={{ paddingTop: "8px" }}>
@@ -120,10 +123,16 @@ const formAdminInformation = props => {
                   }
                 ]
               })(
-                <Input
-                  type="text"
-                  //   onChange={e => props.setDisplayVoucherName(e.target.value)}
-                />
+                respStatus === 400 ? (
+                  <div>
+                    <Input type="text" />
+                    <StyledWarining>
+                      รหัสผ่านนี้มีอยู่ในระบบแล้ว !
+                    </StyledWarining>
+                  </div>
+                ) : (
+                  <Input type="text" />
+                )
               )}
             </Form.Item>
           </Col>
