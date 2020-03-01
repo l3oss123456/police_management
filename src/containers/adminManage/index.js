@@ -12,9 +12,10 @@ const adminManage = props => {
         selectedKey="adminManagement"
         openKey="management"
       >
-        <Search schema="officers" addBtnText="พนักงาน" />
+        <Search pathUrl="management/admin" addBtnText="พนักงาน" />
         <Table
           schema="officers"
+          path="management/admin"
           tableColumns={columns}
           scrollSize={{ width: false, height: window.innerHeight - 310 + "px" }}
         />

@@ -41,7 +41,7 @@ const FormLogin = props => {
                   placeholder="Username"
                   onChange={e => handleChangeInput(e)}
                 />
-                {respStatus === 404 && (
+                {respStatus === 400 && (
                   <StyledWarining>
                     Please Check your username again
                   </StyledWarining>
@@ -70,7 +70,7 @@ const FormLogin = props => {
                   placeholder="Password"
                   onChange={e => handleChangeInput(e)}
                 />
-                {respStatus === 404 && (
+                {respStatus === 400 && (
                   <StyledWarining>
                     Please Check your password again
                   </StyledWarining>
