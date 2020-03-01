@@ -69,33 +69,37 @@ export default compose(
         ["role"],
         JSON.parse(getItemLocalStorage("userInfo"))
       );
-      return [
-        ...tableColumns,
-        {
-          dataIndex: "operation",
-          render: (text, record, index) => {
-            return (
-              <div>
-                {role !== "ผู้อ่าน" && (
-                  <ContainerOperation>
-                    <IconStyled
-                      type="edit"
-                      theme="twoTone"
-                      onClick={() => history.push(`/${path}/${record.id}/edit`)}
-                    />
-                    <Popconfirm
-                      title="Sure to delete?"
-                      onConfirm={() => handleDelete(index, record.id)}
-                    >
-                      <IconStyled type="delete" theme="twoTone" />
-                    </Popconfirm>
-                  </ContainerOperation>
-                )}
-              </div>
-            );
+      return (
+        tableColumns && [
+          ...tableColumns,
+          {
+            dataIndex: "operation",
+            render: (text, record, index) => {
+              return (
+                <div>
+                  {role !== "ผู้อ่าน" && (
+                    <ContainerOperation>
+                      <IconStyled
+                        type="edit"
+                        theme="twoTone"
+                        onClick={() =>
+                          history.push(`/${path}/${record.id}/edit`)
+                        }
+                      />
+                      <Popconfirm
+                        title="Sure to delete?"
+                        onConfirm={() => handleDelete(index, record.id)}
+                      >
+                        <IconStyled type="delete" theme="twoTone" />
+                      </Popconfirm>
+                    </ContainerOperation>
+                  )}
+                </div>
+              );
+            }
           }
-        }
-      ];
+        ]
+      );
     }
   }),
 
