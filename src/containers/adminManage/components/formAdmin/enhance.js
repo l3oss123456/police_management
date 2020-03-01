@@ -36,7 +36,7 @@ export default compose(
             role: selectedRole
           };
           await axios("POST", "officers", data);
-          history.push("/");
+          history.push("management/admin");
           displayNotification("success", "Create Successful");
         }
       });
@@ -58,7 +58,7 @@ export default compose(
             role: selectedRole
           };
           await axios("PUT", `officers/${id}`, data);
-          history.push("/");
+          history.push("management/admin");
           displayNotification("success", "Edit Successful");
         }
       });

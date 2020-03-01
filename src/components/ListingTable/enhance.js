@@ -11,7 +11,6 @@ import styled from "styled-components";
 import { Popconfirm, Icon } from "antd";
 import { withRouter } from "react-router-dom";
 import * as R from "ramda";
-// import setNewColumns from "./setNewColumns";
 import queryDefault from "../../utils/queryDefault";
 import axios from "../../core/libs/axios/axios";
 import Loading from "../Loading/index";
@@ -56,7 +55,7 @@ export default compose(
         : history.push(`?page=${currentPage}&limit=${value}`);
     },
     setNewColumns: props => () => {
-      const { tableColumns, history, schema } = props;
+      const { tableColumns, history, schema, path } = props;
       const handleDelete = async (index, id) => {
         const { queryData, setQueryData } = props;
         await axios("DELETE", `${schema}/${id}`);
@@ -74,7 +73,7 @@ export default compose(
                 <IconStyled
                   type="edit"
                   theme="twoTone"
-                  onClick={() => history.push(`/${schema}/${record.id}/edit`)}
+                  onClick={() => history.push(`/${path}/${record.id}/edit`)}
                 />
                 <Popconfirm
                   title="Sure to delete?"

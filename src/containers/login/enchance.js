@@ -1,5 +1,5 @@
 import { compose, withState, withHandlers, lifecycle } from "recompose";
-import jwt from "jwt-simple";
+// import jwt from "jwt-simple";
 import axios from "../../core/libs/axios/axios";
 // import notification from "../../utils/notification"
 import displayNotification from "../../utils/notification";
@@ -24,23 +24,28 @@ export default compose(
       e.preventDefault();
       form.validateFields(async (err, values) => {
         if (!err) {
-          const { setRespStatus } = props;
+          const { setRespStatus, history } = props;
           // const data = {
           //     username: values.username,
           //     password: values.password
           // }
-          const token = jwt.encode(
-            {
-              username: values.username,
-              password: values.password
-            },
-            "secretKey"
-          );
-          const resp = await axios("POST", "/v1/login", token);
-          if (resp.status !== 200) {
+          // const token = jwt.encode(
+          //   {
+          //     username: values.username,
+          //     password: values.password
+          //   },
+          //   "secretKey"
+          // );
+          const data = {
+            username: values.username,
+            password: values.password
+          };
+          const resp = await axios("POST", "officers/login", data);
+          if (resp.status !== 201) {
             setRespStatus(resp.status);
             displayNotification("error", "Invalid username or password !");
           } else {
+            history.push("/management/admin");
           }
         }
       });

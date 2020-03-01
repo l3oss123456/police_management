@@ -8,9 +8,6 @@ import enhance from "./enhance";
 const Container = styled(Row)`
   padding: 20px;
 `;
-// const Container = styled.div`
-//   padding: 20px;
-// `;
 const Section = styled.div`
   background: #fff;
   margin-bottom: 20px;
@@ -88,7 +85,7 @@ const formAdmin = props => {
 
       <Footer>
         <ContainerFooterBtn>
-          <StyledButtonCancel onClick={() => history.push("/")}>
+          <StyledButtonCancel onClick={() => history.push("/management/admin")}>
             ยกเลิก
           </StyledButtonCancel>
           <StyledButtonSave

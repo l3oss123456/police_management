@@ -55,7 +55,7 @@ const HeaderLayout = props => {
       {isLogout && (
         <Redirect
           to={{
-            pathname: "/Login"
+            pathname: "/"
           }}
         />
       )}

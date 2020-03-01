@@ -12,7 +12,7 @@ const StyledSearch = styled.div`
 `;
 
 const SearchComponent = props => {
-  const { pushSearchUrl, schema, addBtnText, history } = props;
+  const { pushSearchUrl, pathUrl, addBtnText, history } = props;
   return (
     <StyledContainerSearch>
       <StyledSearch width="280px">
@@ -29,7 +29,7 @@ const SearchComponent = props => {
         </Button>
       </StyledSearch>
       <StyledSearch>
-        <Button icon="plus" onClick={() => history.push(`/${schema}/create`)}>
+        <Button icon="plus" onClick={() => history.push(`/${pathUrl}/create`)}>
           {addBtnText}
         </Button>
       </StyledSearch>

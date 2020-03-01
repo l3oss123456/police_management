@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <Router>
       <Switch>
-        <Route exact path="/Login" component={Login}></Route>
+        <Route exact path="/" component={Login}></Route>
         {/* <Route exact path="/" component={Management}></Route> */}
         {/* <GuardRoutes exact path="/" component={Management} type="admin" /> */}
         <GuardRoutes
@@ -22,22 +22,27 @@ const Routes = () => {
           component={Dashboard}
           type="admin"
         />
-        <GuardRoutes exact path="/" component={adminManage} type="admin" />
         <GuardRoutes
           exact
-          path="/officers/create"
+          path="/management/admin"
+          component={adminManage}
+          type="admin"
+        />
+        <GuardRoutes
+          exact
+          path="/management/admin/create"
           component={addAdmin}
           type="admin"
         />
         <GuardRoutes
           exact
-          path="/officers/:id/edit"
+          path="/management/admin/:id/edit"
           component={editAdmin}
           type="admin"
         />
         <GuardRoutes
           exact
-          path="/userManage"
+          path="/management/user"
           component={userManage}
           type="admin"
         />
