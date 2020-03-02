@@ -1,3 +1,4 @@
+//@flow
 import React, { useState } from "react";
 import { Layout, Icon, Dropdown, Button, Popconfirm } from "antd";
 import { withRouter, Redirect } from "react-router-dom";
@@ -5,6 +6,11 @@ import styled from "styled-components";
 import * as R from "ramda";
 import { clearItem } from "../../core/storage/index";
 import { getItemLocalStorage } from "../../core/storage/index";
+
+type Props = {
+  isCollap: Boolean,
+  setIsCollap: Any
+};
 
 const { Header } = Layout;
 const ContainerHeader = styled.div`
@@ -28,7 +34,7 @@ const IconStyled = styled(Icon)`
   margin-right: ${props => (props.marginRight: "")};
 `;
 
-const HeaderLayout = props => {
+const HeaderLayout = (props: Props) => {
   const { isCollap, setIsCollap } = props;
   const [isLogout, setIsLogout] = useState(false);
 

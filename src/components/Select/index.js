@@ -1,10 +1,17 @@
+//@flow
 import React from "react";
 import { Select } from "antd";
 import * as R from "ramda";
 
 const { Option } = Select;
 
-const ComponentSelect = props => {
+type Props = {
+  defaultData: String,
+  allData: Array,
+  selected: String
+};
+
+const ComponentSelect = (props: Props) => {
   const { defaultData, allData, selected } = props;
   const handleChange = value => {
     selected(value);

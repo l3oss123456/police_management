@@ -1,9 +1,25 @@
+//@flow
 import React from "react";
 import { Form, Row, Button } from "antd";
 import * as R from "ramda";
 import styled from "styled-components";
 import FormAdminInformation from "./formAdminInformation/index";
 import enhance from "./enhance";
+
+type Props = {
+  allPosition: Array,
+  allRole: Array,
+  selectedPosition: String,
+  setSelectedPosition: Any,
+  selectedRole: String,
+  setSelectedRole: Any,
+  queryData: Array,
+  form: any,
+  history: any,
+  insertOfficer: Any,
+  editOfficer: Any,
+  respStatus: String
+};
 
 const Container = styled(Row)`
   padding: 20px;
@@ -51,7 +67,7 @@ const ContainerFooterBtn = styled.div`
   align-items: center;
 `;
 
-const formAdmin = props => {
+const formAdmin = (props: Props) => {
   const {
     allPosition,
     allRole,

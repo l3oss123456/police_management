@@ -1,8 +1,21 @@
+//@flow
 import React from "react";
 import { Form, Input, Row, Col } from "antd";
 import * as R from "ramda";
 import styled from "styled-components";
 import Select from "../../../../../components/Select/index";
+
+type Props = {
+  form: Any,
+  position: Array,
+  role: Array,
+  setSelectedPosition: Any,
+  selectedPosition: String,
+  setSelectedRole: Any,
+  selectedRole: String,
+  queryData: Array,
+  respStatus: String
+};
 
 const SectionHeader = styled.h3`
   background: #fafafa;
@@ -17,7 +30,7 @@ const StyledWarining = styled.div`
   font-size: 13px;
 `;
 
-const formAdminInformation = props => {
+const formAdminInformation = (props: Props) => {
   const {
     form,
     position,

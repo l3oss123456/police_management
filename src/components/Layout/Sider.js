@@ -1,3 +1,4 @@
+//@flow
 import React from "react";
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from "antd";
@@ -6,6 +7,13 @@ import menu from "../../utils/siderMenu";
 import SubMenu from "antd/lib/menu/SubMenu";
 import policeIcon from "../../core/images/policeIcon.PNG";
 const { Sider } = Layout;
+
+type Props = {
+  userRole: String,
+  isCollap: Boolean,
+  selectedKey: String,
+  openKey: String
+};
 
 const StyledImgDiv = styled.div`
   display: flex;
@@ -18,7 +26,7 @@ const StyledImgLayout = styled.img`
   width: 100px;
 `;
 
-const SiderLayout = props => {
+const SiderLayout = (props: Props) => {
   const { userRole, isCollap, selectedKey, openKey } = props;
   return (
     <Sider
