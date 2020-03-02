@@ -7,13 +7,6 @@ const menu = [
     userRole: "admin"
   },
   {
-    key: "2",
-    name: "admin menu 2",
-    iconType: "user",
-    link: "/adminMenu2",
-    userRole: "admin"
-  },
-  {
     subMenuKey: "management",
     titleName: "Management",
     iconType: "snippets",
