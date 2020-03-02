@@ -1,4 +1,4 @@
-import { compose, withHandlers } from "recompose";
+import { compose, withState, withHandlers } from "recompose";
 import { withRouter } from "react-router-dom";
 import qs from "qs";
 import * as R from "ramda";
@@ -7,9 +7,11 @@ import queryDefault from "../../utils/queryDefault";
 
 export default compose(
   withRouter,
+  withState("searchValue", "setSearchValue", ""),
+  withState("rangeDate", "setRangeDate", ""),
   withHandlers({
-    pushSearchUrl: props => async searchValue => {
-      const { history, location } = props;
+    pushSearchUrl: props => async () => {
+      const { searchValue, history, location } = props;
       const oldQs = qs.parse(location.search, {
         ignoreQueryPrefix: true
       });

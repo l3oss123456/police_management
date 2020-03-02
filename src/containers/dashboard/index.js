@@ -10,7 +10,8 @@ const ContainerSection = styled.div`
   justify-content: space-between;
 `;
 const ContainerChartInfo = styled.div`
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 `;
 
 const Dashboard = props => {
@@ -79,7 +80,7 @@ const Dashboard = props => {
               width: window.innerWidth - 330 + "px"
             }}
           >
-            <Search />
+            <Search isRangePicker />
             <Table
               scrollSize={{
                 width: false,

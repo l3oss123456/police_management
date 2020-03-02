@@ -77,22 +77,6 @@ const SiderLayout = (props: Props) => {
               </Menu.Item>
             )
           ) : null;
-          // return item.userRole === userRole ? (
-          // <Menu.Item key={item.key}>
-          //   <Icon type={item.iconType} />
-          //   <span>{item.name}</span>
-          // </Menu.Item>
-          // ) : null;
-
-          // if (item.userRole === userRole) {
-          //   return (
-          //   <Menu.Item key={item.key}>
-          //     <Icon type={item.iconType} />
-          //     <span>{item.name}</span>
-          //   </Menu.Item>
-          // );
-          // }
-          // return "";
         })}
       </Menu>
     </Sider>
