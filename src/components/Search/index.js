@@ -1,9 +1,17 @@
+//@flow
 import React from "react";
 import { Input, Button } from "antd";
 import styled from "styled-components";
 import * as R from "ramda";
 import { getItemLocalStorage } from "../../core/storage/index";
 import enhance from "./enhance";
+
+type Props = {
+  pushSearchUrl: String,
+  pathUrl: String,
+  addBtnText: String,
+  history: Any
+};
 
 const StyledContainerSearch = styled.div`
   display: flex;
@@ -13,7 +21,7 @@ const StyledSearch = styled.div`
   width: ${props => (props.width: "")};
 `;
 
-const SearchComponent = props => {
+const SearchComponent = (props: Props) => {
   const { pushSearchUrl, pathUrl, addBtnText, history } = props;
   const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
   return (

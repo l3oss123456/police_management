@@ -1,10 +1,18 @@
+// @flow
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import * as R from "ramda";
 import { getItemLocalStorage, clearItem } from "../../storage/index";
 import displayNotification from "../../../utils/notification";
 
-const renderComponent = props => {
+type Props = {
+  exact: Boolean,
+  path: Any,
+  component: Component,
+  allowRole: Array
+};
+
+const renderComponent = (props: Props) => {
   const { component: Component, allowRole } = props;
   const user = R.path(["name"], JSON.parse(getItemLocalStorage("userInfo")));
   const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
@@ -33,7 +41,7 @@ const renderComponent = props => {
   }
 };
 
-const GuardRoutes = props => {
+const GuardRoutes = (props: Props) => {
   const { exact, path } = props;
   const render = renderComponent(props);
   return <Route exact={exact} path={path} render={() => render} />;

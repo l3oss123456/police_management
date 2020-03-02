@@ -10,6 +10,7 @@ export default compose(
   withState("password", "setPassword", ""),
   withState("status", "setStatus", false),
   withState("respStatus", "setRespStatus", ""),
+  withState("isLogin", "setIsLogin", false),
   withHandlers({
     hasErrors: props => fieldsError => {
       return Object.keys(fieldsError).some(field => fieldsError[field]);
@@ -25,7 +26,6 @@ export default compose(
       e.preventDefault();
       form.validateFields(async (err, values) => {
         if (!err) {
-          const { setRespStatus, history } = props;
           // const data = {
           //     username: values.username,
           //     password: values.password
@@ -43,12 +43,14 @@ export default compose(
           };
           const resp = await axios("POST", "officers/login", data);
           if (resp.data.statusCode !== 200) {
+            const { setRespStatus } = props;
             setRespStatus(resp.data.statusCode);
             displayNotification(
               "error",
               "ชื่อผู้ใช้งานหรือรหัสผ่านไม่ถูกต้อง, กรุณาตรวจสอบอีกครั้ง !"
             );
           } else {
+            const { setIsLogin } = props;
             setItemLocalStorage(
               "userInfo",
               JSON.stringify({
@@ -57,7 +59,7 @@ export default compose(
               })
             );
             displayNotification("success", "Login สำเร็จ");
-            history.push("/management/admin");
+            setIsLogin(true);
           }
         }
       });

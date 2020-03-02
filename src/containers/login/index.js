@@ -5,12 +5,14 @@ import styled from "styled-components";
 import FormLogin from "./components/FormLogin/index";
 import enchance from "./enchance";
 import bg from "../../core/images/bg.jpg";
+import { Redirect } from "react-router-dom";
 
 type Props = {
-  handleSubmit: any,
-  hasErrors: any,
-  handleChangeInput: any,
-  respStatus: boolean
+  handleSubmit: Any,
+  hasErrors: Any,
+  handleChangeInput: Any,
+  respStatus: Boolean,
+  isLogin: Boolean
 };
 
 const StyledBackgroundLayout = styled.div`
@@ -51,21 +53,17 @@ const StyledLogin = styled.div`
   padding-top: 40px;
 `;
 
-// const ContainerIcon = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   margin-bottom: 20px;
-// `;
-// const LoginForm = styled.div`
-//   margin-left: 30px;
-//   display: flex;
-//   justify-content: center;
-// `;
-
 const Login = (props: Props) => {
-  const { handleSubmit, hasErrors, handleChangeInput, respStatus } = props;
+  const {
+    handleSubmit,
+    hasErrors,
+    handleChangeInput,
+    respStatus,
+    isLogin
+  } = props;
   return (
     <StyledBackgroundLayout>
+      {isLogin === true && <Redirect to={{ pathname: "/management/admin" }} />}
       <StyledImgLayout src={bg} />
       <StyledCard>
         <StyledHeader>Sign in</StyledHeader>

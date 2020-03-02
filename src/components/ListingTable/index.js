@@ -1,9 +1,21 @@
+//@flow
 import React from "react";
 import { Table } from "antd";
 import * as R from "ramda";
 import styled from "styled-components";
 import Pagination from "./pagination";
 import enhance from "./enhance";
+
+type Props = {
+  scrollSize: Object,
+  limitPage: Number,
+  totalPage: Number,
+  displayLimitPage: Number,
+  changeLimitedPage: Number,
+  pushUrl: Any,
+  columns: Array,
+  queryData: Array
+};
 
 const ContainerListingTable = styled.div`
   margin-top: 20px;
@@ -16,7 +28,7 @@ const ScrollStyled = styled.div`
   overflow-x: ${props => (props.width ? "scroll" : "")};
 `;
 
-const ListingTable = props => {
+const ListingTable = (props: Props) => {
   const {
     scrollSize,
     limitPage,
