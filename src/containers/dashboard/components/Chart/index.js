@@ -9,6 +9,6 @@ type Props = {
 
 const Chart = (props: Props) => {
   const { chartName } = props;
-  return <div id={chartName} style={{ height: "230px" }} />;
+  return <div id={chartName} style={{ height: "350px" }} />;
 };
 export default enhanceChart(Chart);
