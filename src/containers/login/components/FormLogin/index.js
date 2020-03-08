@@ -61,7 +61,7 @@ const FormLogin = props => {
               ]
             })(
               <div>
-                <Input
+                <Input.Password
                   style={styles.width}
                   prefix={
                     <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
