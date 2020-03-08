@@ -7,8 +7,7 @@ import {
   branch,
   renderComponent
 } from "recompose";
-import styled from "styled-components";
-import { Popconfirm, Icon } from "antd";
+import { Popconfirm } from "antd";
 import { withRouter } from "react-router-dom";
 import * as R from "ramda";
 import queryDefault from "../../utils/queryDefault";
@@ -16,15 +15,7 @@ import axios from "../../core/libs/axios/axios";
 import Loading from "../Loading/index";
 import { getItemLocalStorage } from "../../core/storage/index";
 import displayNotification from "../../utils/notification";
-
-const ContainerOperation = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 90px;
-`;
-const IconStyled = styled(Icon)`
-  font-size: 20px;
-`;
+import { ContainerOperation, IconStyled } from "./styled";
 
 export default compose(
   withRouter,
@@ -87,7 +78,7 @@ export default compose(
                         }
                       />
                       <Popconfirm
-                        title="Sure to delete?"
+                        title="คุณแน่ใจ จะลบข้อมูลนี้ ?"
                         onConfirm={() => handleDelete(index, record.id)}
                       >
                         <IconStyled type="delete" theme="twoTone" />

@@ -2,6 +2,7 @@
 import React from "react";
 import { Select } from "antd";
 import * as R from "ramda";
+import { StyledSelect } from "./styled";
 
 const { Option } = Select;
 
@@ -18,11 +19,11 @@ const ComponentSelect = (props: Props) => {
   };
   const width = R.pathOr("", ["width"], props);
   return allData ? (
-    <Select value={defaultData} onChange={handleChange} style={{ width }}>
+    <StyledSelect value={defaultData} onChange={handleChange} style={{ width }}>
       {Object.values(allData).map(item => {
         return <Option value={item}>{item}</Option>;
       })}
-    </Select>
+    </StyledSelect>
   ) : null;
 };
 export default ComponentSelect;

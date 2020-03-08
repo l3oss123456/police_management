@@ -2,8 +2,13 @@
 import React from "react";
 import { Form, Input, Row, Col } from "antd";
 import * as R from "ramda";
-import styled from "styled-components";
 import Select from "../../../../../components/Select/index";
+import {
+  SectionHeader,
+  SectionContent,
+  StyledWarning,
+  StyledFormItem
+} from "../../Styled/index";
 
 type Props = {
   form: Any,
@@ -16,19 +21,6 @@ type Props = {
   queryData: Array,
   respStatus: String
 };
-
-const SectionHeader = styled.h3`
-  background: #fafafa;
-  border-bottom: 1px solid #ededed;
-  padding: 15px 20px;
-`;
-const SectionContent = styled.div`
-  padding: 20px;
-`;
-const StyledWarining = styled.div`
-  color: red;
-  font-size: 13px;
-`;
 
 const formAdminInformation = (props: Props) => {
   const {
@@ -56,17 +48,17 @@ const formAdminInformation = (props: Props) => {
             ชื่อ :
           </Col>
           <Col span={16} md={18}>
-            <Form.Item style={{ width: "90%" }}>
+            <StyledFormItem style={{ width: "90%" }}>
               {getFieldDecorator("firstName", {
                 initialValue: firstName,
                 rules: [
                   {
                     required: true,
-                    message: "Please Input First Name"
+                    message: "กรุณาใส่ชื่อ !"
                   }
                 ]
               })(<Input type="text" />)}
-            </Form.Item>
+            </StyledFormItem>
           </Col>
         </Row>
 
@@ -75,17 +67,17 @@ const formAdminInformation = (props: Props) => {
             นามสกุล :
           </Col>
           <Col span={16} md={18}>
-            <Form.Item style={{ width: "90%" }}>
+            <StyledFormItem style={{ width: "90%" }}>
               {getFieldDecorator("lastName", {
                 initialValue: lastName,
                 rules: [
                   {
                     required: true,
-                    message: "Please Input Last Name"
+                    message: "กรุณาใส่นามสกุล !"
                   }
                 ]
               })(<Input type="text" />)}
-            </Form.Item>
+            </StyledFormItem>
           </Col>
         </Row>
 
@@ -95,7 +87,7 @@ const formAdminInformation = (props: Props) => {
               ชื่อผู้ใช้งาน :
             </Col>
             <Col span={16} md={18}>
-              <Form.Item style={{ width: "90%" }}>
+              <StyledFormItem style={{ width: "90%" }}>
                 {getFieldDecorator("username", {
                   initialValue: username,
                   rules: [
@@ -108,15 +100,15 @@ const formAdminInformation = (props: Props) => {
                   respStatus === 400 ? (
                     <div>
                       <Input type="text" />
-                      <StyledWarining>
+                      <StyledWarning>
                         ชื่อผู้ใช้งานนี้มีอยู่ในระบบแล้ว !
-                      </StyledWarining>
+                      </StyledWarning>
                     </div>
                   ) : (
                     <Input type="text" />
                   )
                 )}
-              </Form.Item>
+              </StyledFormItem>
             </Col>
           </Row>
         )}
@@ -132,16 +124,14 @@ const formAdminInformation = (props: Props) => {
                 rules: [
                   {
                     required: true,
-                    message: "Please Input Lasy Name"
+                    message: "กรุณาใส่รหัสผ่าน !"
                   }
                 ]
               })(
                 respStatus === 400 ? (
                   <div>
                     <Input.Password />
-                    <StyledWarining>
-                      รหัสผ่านนี้มีอยู่ในระบบแล้ว !
-                    </StyledWarining>
+                    <StyledWarning>รหัสผ่านนี้มีอยู่ในระบบแล้ว !</StyledWarning>
                   </div>
                 ) : (
                   <Input.Password />

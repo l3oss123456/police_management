@@ -1,11 +1,17 @@
 //@flow
 import React, { useState } from "react";
-import { Layout, Icon, Dropdown, Button, Popconfirm } from "antd";
+import { Layout, Icon, Dropdown, Popconfirm } from "antd";
 import { withRouter, Redirect } from "react-router-dom";
-import styled from "styled-components";
 import * as R from "ramda";
 import { clearItem } from "../../core/storage/index";
 import { getItemLocalStorage } from "../../core/storage/index";
+import Theme from "../../core/theme/index";
+import {
+  ContainerHeader,
+  ContainerInfo,
+  LogoutBtn,
+  IconStyled
+} from "./styled";
 
 type Props = {
   isCollap: Boolean,
@@ -13,35 +19,14 @@ type Props = {
 };
 
 const { Header } = Layout;
-const ContainerHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-left: 35px;
-  margin-right: 40px;
-`;
-const ContainerInfo = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-right: 50px;
-`;
-const LogoutBtn = styled(Button)`
-  display: flex;
-  justify-content: space-between;
-  width: 100px;
-`;
-const IconStyled = styled(Icon)`
-  font-size: ${props => (props.width: "")};
-  margin-right: ${props => (props.marginRight: "")};
-`;
 
 const HeaderLayout = (props: Props) => {
   const { isCollap, setIsCollap } = props;
   const [isLogout, setIsLogout] = useState(false);
-
   const dropdownMenu = (
     <div>
       <Popconfirm
-        title="Sure to exit ?"
+        title="คุณแน่ใจ ที่จะออกจากระบบ ?"
         okText="Yes"
         cancelText="No"
         onConfirm={() => {
@@ -74,7 +59,7 @@ const HeaderLayout = (props: Props) => {
       )}
       <Header
         style={{
-          background: "#fff",
+          background: Theme.colors.blackRussian,
           padding: 0
         }}
       >

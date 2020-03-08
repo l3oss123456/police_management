@@ -1,18 +1,6 @@
 import React from "react";
-import { Form, Icon, Input, Button } from "antd";
-import styled from "styled-components";
-
-const StyledWarining = styled.div`
-  color: red;
-  font-size: 13px;
-`;
-const StyledButton = styled(Button)`
-  .ant-btn {
-    color: #d9d9d9;
-    background-color: #495057;
-    border-color: #d9d9d9;
-  }
-`;
+import { Form, Icon, Input } from "antd";
+import { StyledWarning, StyledButton } from "../Styled/index";
 
 const styles = {
   width: { width: 300 }
@@ -42,9 +30,9 @@ const FormLogin = props => {
                   onChange={e => handleChangeInput(e)}
                 />
                 {respStatus === 400 && (
-                  <StyledWarining>
+                  <StyledWarning>
                     กรุณาตรวจสอบชื่อผู้ใช้งานอีกครั้ง !
-                  </StyledWarining>
+                  </StyledWarning>
                 )}
               </div>
             )}
@@ -71,9 +59,7 @@ const FormLogin = props => {
                   onChange={e => handleChangeInput(e)}
                 />
                 {respStatus === 400 && (
-                  <StyledWarining>
-                    กรุณาตรวจสอบรหัสผ่านอีกครั้ง !
-                  </StyledWarining>
+                  <StyledWarning>กรุณาตรวจสอบรหัสผ่านอีกครั้ง !</StyledWarning>
                 )}
               </div>
             )}

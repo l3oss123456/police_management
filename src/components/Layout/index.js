@@ -4,6 +4,7 @@ import { Layout } from "antd";
 import Header from "./Header";
 import Sider from "./Sider";
 import enhance from "./enhance";
+import Theme from "../../core/theme/index";
 
 type Props = {
   userRole: String,
@@ -25,6 +26,7 @@ const MainLayout = (props: Props) => {
     selectedKey,
     openKey
   } = props;
+  const { midnightEx } = Theme.colors;
   return (
     <Layout>
       <Sider
@@ -38,7 +40,7 @@ const MainLayout = (props: Props) => {
         style={{
           height: window.innerHeight,
           position: "relative",
-          backgroundColor: "#F1F2F6"
+          backgroundColor: midnightEx
         }}
       >
         <Header isCollap={isCollap} setIsCollap={setIsCollap} />

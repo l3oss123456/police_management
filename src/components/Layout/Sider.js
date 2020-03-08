@@ -2,10 +2,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from "antd";
-import styled from "styled-components";
 import menu from "../../utils/siderMenu";
 import SubMenu from "antd/lib/menu/SubMenu";
 import policeIcon from "../../core/images/policeIcon.PNG";
+import Theme from "../../core/theme/index";
+import { StyledImgDiv, StyledImgLayout } from "./styled";
 const { Sider } = Layout;
 
 type Props = {
@@ -14,17 +15,6 @@ type Props = {
   selectedKey: String,
   openKey: String
 };
-
-const StyledImgDiv = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0px 30px 0px;
-`;
-const StyledImgLayout = styled.img`
-  height: 100px;
-  width: 100px;
-`;
 
 const SiderLayout = (props: Props) => {
   const { userRole, isCollap, selectedKey, openKey } = props;
@@ -35,9 +25,10 @@ const SiderLayout = (props: Props) => {
       collapsed={isCollap}
       breakpoint="lg"
       collapsedWidth="80"
+      style={{ background: Theme.colors.blackRussian }}
     >
       <StyledImgDiv>
-        <StyledImgLayout src={policeIcon} />
+        {!isCollap && <StyledImgLayout src={policeIcon} />}
       </StyledImgDiv>
       <Menu
         theme="dark"
@@ -46,8 +37,9 @@ const SiderLayout = (props: Props) => {
         defaultOpenKeys={openKey}
       >
         {menu.map(menuItem => {
-          return menuItem.userRole === userRole ? (
-            menuItem.subMenuKey ? (
+          return (
+            menuItem.userRole === userRole &&
+            (menuItem.subMenuKey ? (
               <SubMenu
                 key={menuItem.subMenuKey}
                 title={
@@ -75,8 +67,8 @@ const SiderLayout = (props: Props) => {
                   <span>{menuItem.name}</span>
                 </Link>
               </Menu.Item>
-            )
-          ) : null;
+            ))
+          );
         })}
       </Menu>
     </Sider>

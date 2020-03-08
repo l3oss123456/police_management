@@ -1,11 +1,11 @@
 //@flow
 import React from "react";
 import { Input, Button, DatePicker } from "antd";
-import styled from "styled-components";
 import moment from "moment";
 import * as R from "ramda";
 import { getItemLocalStorage } from "../../core/storage/index";
 import enhance from "./enhance";
+import { StyledContainerSearch, StyledSearch } from "./styled";
 
 const { RangePicker } = DatePicker;
 
@@ -19,14 +19,6 @@ type Props = {
   setSearchValue: Any,
   setRangeDate: Any
 };
-
-const StyledContainerSearch = styled.div`
-  display: flex;
-`;
-const StyledSearch = styled.div`
-  padding: 0px 15px 0px 0px;
-  width: ${props => (props.width: "")};
-`;
 
 const SearchComponent = (props: Props) => {
   const {
