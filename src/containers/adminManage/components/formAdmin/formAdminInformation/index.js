@@ -138,13 +138,13 @@ const formAdminInformation = (props: Props) => {
               })(
                 respStatus === 400 ? (
                   <div>
-                    <Input type="text" />
+                    <Input.Password />
                     <StyledWarining>
                       รหัสผ่านนี้มีอยู่ในระบบแล้ว !
                     </StyledWarining>
                   </div>
                 ) : (
-                  <Input type="text" />
+                  <Input.Password />
                 )
               )}
             </Form.Item>
