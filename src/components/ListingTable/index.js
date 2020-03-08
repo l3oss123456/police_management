@@ -1,10 +1,9 @@
 //@flow
 import React from "react";
-import { Table } from "antd";
 import * as R from "ramda";
-import styled from "styled-components";
 import Pagination from "./pagination";
 import enhance from "./enhance";
+import { ContainerListingTable, ScrollStyled, StyledTable } from "./styled";
 
 type Props = {
   scrollSize: Object,
@@ -16,17 +15,6 @@ type Props = {
   columns: Array,
   queryData: Array
 };
-
-const ContainerListingTable = styled.div`
-  margin-top: 20px;
-`;
-const ScrollStyled = styled.div`
-  background: white;
-  height: ${props => (props.height ? props.height : "")};
-  overflow-y: ${props => (props.height ? "scroll" : "")};
-  width: ${props => (props.width ? props.width : "")};
-  overflow-x: ${props => (props.width ? "scroll" : "")};
-`;
 
 const ListingTable = (props: Props) => {
   const {
@@ -45,11 +33,11 @@ const ListingTable = (props: Props) => {
         height={R.path(["height"], scrollSize)}
         width={R.path(["width"], scrollSize)}
       >
-        <Table
+        <StyledTable
           columns={columns}
           dataSource={queryData}
           pagination={false}
-        ></Table>
+        ></StyledTable>
       </ScrollStyled>
       <Pagination
         limitPage={limitPage}

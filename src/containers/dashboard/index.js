@@ -1,18 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 import Layout from "../../components/Layout/index";
 import Chart from "./components/Chart/index";
 import Search from "../../components/Search/index";
 import Table from "../../components/ListingTable/index";
-
-const ContainerSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-const ContainerChartInfo = styled.div`
-  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-`;
+import { ContainerSection, ContainerInfo } from "./components/Styled/index";
 
 const Dashboard = props => {
   const chartData = [
@@ -66,11 +57,11 @@ const Dashboard = props => {
     <div>
       <Layout userRole="admin" selectedKey="dashboard">
         <ContainerSection>
-          <ContainerChartInfo>Information1</ContainerChartInfo>
-          <ContainerChartInfo>Information2</ContainerChartInfo>
-          <ContainerChartInfo>
+          <ContainerInfo>Information1</ContainerInfo>
+          <ContainerInfo>Information2</ContainerInfo>
+          <ContainerInfo>
             <Chart chartName="PieChart" chartData={chartData}></Chart>
-          </ContainerChartInfo>
+          </ContainerInfo>
         </ContainerSection>
 
         <ContainerSection>

@@ -1,24 +1,12 @@
 import React from "react";
-import { Pagination } from "antd";
-import styled from "styled-components";
 import Select from "../Select/index";
+import {
+  ContainerPagination,
+  ContainerElement,
+  Text,
+  StyledPagination
+} from "./styled";
 
-const ContainerPagination = styled.div`
-  padding: 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-const ContainerElement = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const Text = styled.h1`
-  margin-right: ${props => (props.marginRight ? "15px" : "")};
-  margin-left: ${props => (props.marginLeft ? "15px" : "")};
-  margin-top: ${props => (props.marginTop ? "8px" : "")};
-`;
 const ComponentPagination = props => {
   const {
     limitPage,
@@ -45,7 +33,7 @@ const ComponentPagination = props => {
       </ContainerElement>
 
       <ContainerElement>
-        <Pagination
+        <StyledPagination
           onChange={pushUrl}
           defaultCurrent={currentPage}
           pageSize={limitPage}
