@@ -21,6 +21,7 @@ const ListingTable = (props: Props) => {
     scrollSize,
     limitPage,
     totalPage,
+    currentPage,
     displayLimitPage,
     changeLimitedPage,
     pushUrl,
@@ -41,6 +42,7 @@ const ListingTable = (props: Props) => {
       </ScrollStyled>
       <Pagination
         limitPage={limitPage}
+        currentPage={currentPage}
         displayLimitPage={displayLimitPage}
         changeLimitedPage={changeLimitedPage}
         pushUrl={pushUrl}
