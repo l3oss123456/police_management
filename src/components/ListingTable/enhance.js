@@ -30,6 +30,7 @@ export default compose(
   withState("isLoading", "setIsLoading", true),
   withState("queryData", "setQueryData", []),
   withState("columns", "setColumns", []),
+
   withHandlers({
     pushUrl: props => value => {
       const { limitPage, history } = props;
@@ -38,13 +39,20 @@ export default compose(
         ? history.push(`?page=${value}&limit=${limitPage}&search=${search}`)
         : history.push(`?page=${value}&limit=${limitPage}`);
     },
-    changeLimitedPage: props => value => {
-      const { setLimitPage, currentPage, history } = props;
+    changeLimitedPage: props => limit => {
+      const { setLimitPage, currentPage, history, location } = props;
       const { search } = queryDefault;
-      setLimitPage(value);
+      setLimitPage(limit);
+      const urlPage = location.search.substring(6, 7);
+      var page;
+      if (currentPage <= urlPage) {
+        page = 1;
+      } else {
+        page = currentPage;
+      }
       search
-        ? history.push(`?page=${currentPage}&limit=${value}&search=${search}`)
-        : history.push(`?page=${currentPage}&limit=${value}`);
+        ? history.push(`?page=${page}&limit=${limit}&search=${search}`)
+        : history.push(`?page=${page}&limit=${limit}`);
     },
     setNewColumns: props => () => {
       const { tableColumns, history, schema, path } = props;
@@ -110,7 +118,6 @@ export default compose(
       const { search } = location;
       history.push(`?page=${currentPage}&limit=${limitPage}`);
       const resp = await axios("GET", `${schema}${search}`);
-      // setColumns(setNewColumns(tableColumns, schema, history, setQueryData));
       setQueryData(R.path(["data", "data"], resp));
       setColumns(setNewColumns());
       setTotalPage(R.path(["data", "total"], resp));
