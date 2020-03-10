@@ -1,9 +1,9 @@
-import { compose, withState, withHandlers } from "recompose";
+import { compose, withState, withHandlers, lifecycle } from "recompose";
 // import jwt from "jwt-simple";
 import axios from "../../core/libs/axios/axios";
-// import notification from "../../utils/notification"
 import displayNotification from "../../utils/notification";
 import { setItemLocalStorage } from "../../core/storage/index";
+import { clearItem } from "../../core/storage/index";
 
 export default compose(
   withState("username", "setUsername", ""),
@@ -63,6 +63,11 @@ export default compose(
           }
         }
       });
+    }
+  }),
+  lifecycle({
+    async componentDidMount() {
+      clearItem();
     }
   })
 );
