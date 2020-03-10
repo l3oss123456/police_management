@@ -3,7 +3,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import FormLogin from "./components/FormLogin/index";
 import enchance from "./enchance";
-import bg from "../../core/images/bg.jpg";
+import policeIcon from "../../core/images/policeIcon.PNG";
 import {
   StyledBackgroundLayout,
   StyledImgLayout,
@@ -31,15 +31,22 @@ const Login = (props: Props) => {
   return (
     <StyledBackgroundLayout>
       {isLogin === true && <Redirect to={{ pathname: "/management/admin" }} />}
-      <StyledImgLayout src={bg} />
       <StyledCard>
-        <StyledHeader>Sign in</StyledHeader>
+        <StyledHeader>
+          <StyledImgLayout src={policeIcon} />
+          <div>
+            สำนักงานตำรวจแห่งชาติ
+            <br />
+            Royal Thai Police
+          </div>
+        </StyledHeader>
         <StyledLogin>
           <FormLogin
             handleSubmit={handleSubmit}
             hasErrors={hasErrors}
             handleChangeInput={handleChangeInput}
             respStatus={respStatus}
+            policeIcon={policeIcon}
           />
         </StyledLogin>
       </StyledCard>

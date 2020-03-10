@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { Form, Icon, Input } from "antd";
 import { StyledWarning, StyledButton } from "../Styled/index";
@@ -6,7 +7,14 @@ const styles = {
   width: { width: 300 }
 };
 
-const FormLogin = props => {
+type Props = {
+  handleSubmit: Any,
+  hasErrors: Any,
+  handleChangeInput: Any,
+  respStatus: Boolean
+};
+
+const FormLogin = (props: Props) => {
   const { getFieldDecorator, getFieldsError } = props.form;
   const { handleSubmit, hasErrors, handleChangeInput, respStatus } = props;
   return (
@@ -73,7 +81,7 @@ const FormLogin = props => {
               htmlType="submit"
               disabled={hasErrors(getFieldsError())}
             >
-              Sign in
+              ลงชื่อเข้าใช้
             </StyledButton>
           </Form.Item>
         </p>
