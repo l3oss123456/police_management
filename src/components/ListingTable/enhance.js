@@ -55,7 +55,14 @@ export default compose(
         : history.push(`?page=${page}&limit=${limit}`);
     },
     setNewColumns: props => () => {
-      const { tableColumns, history, schema, path, isPrint } = props;
+      const {
+        tableColumns,
+        history,
+        schema,
+        path,
+        isPrint,
+        isUserManagePage
+      } = props;
       const handleDelete = async (index, id) => {
         const { queryData, setQueryData } = props;
         await axios("DELETE", `${schema}/${id}`);
@@ -82,7 +89,9 @@ export default compose(
                         type="edit"
                         theme="twoTone"
                         onClick={() =>
-                          history.push(`/${path}/${record.id}/edit`)
+                          isUserManagePage
+                            ? (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
+                            : history.push(`/${path}/${record.id}/edit`)
                         }
                       />
                       <Popconfirm
@@ -102,14 +111,14 @@ export default compose(
             render: (text, record) => {
               return (
                 <div>
-                  {isPrint && (
+                  {isPrint && role !== "ผู้อ่าน" && (
                     <a
                       href="# "
                       onClick={() =>
                         (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
                       }
                     >
-                      print
+                      <u>พิมพ์</u>
                     </a>
                   )}
                 </div>

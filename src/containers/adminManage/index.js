@@ -12,7 +12,7 @@ const adminManage = props => {
         selectedKey="adminManagement"
         openKey="management"
       >
-        <Search pathUrl="management/admin" addBtnText="ผู้ดูแลระบบ" isAddBtn />
+        <Search pathUrl="management/admin" addBtnText="พนักงาน" isAddBtn />
         <Table
           schema="officers"
           path="management/admin"

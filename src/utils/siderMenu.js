@@ -4,7 +4,7 @@ const menu = [
     name: "Dashboard",
     iconType: "area-chart",
     link: "/dashboard",
-    userRole: "admin"
+    userRole: "admin22"
   },
   {
     subMenuKey: "management",

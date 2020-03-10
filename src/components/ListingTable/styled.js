@@ -49,7 +49,7 @@ export const StyledPagination = styled(Pagination)`
 export const ContainerOperation = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 90px;
+  width: 70px;
 `;
 export const IconStyled = styled(Icon)`
   font-size: 20px;

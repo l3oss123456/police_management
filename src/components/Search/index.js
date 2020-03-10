@@ -24,6 +24,7 @@ const SearchComponent = (props: Props) => {
   const {
     pushSearchUrl,
     pathUrl,
+    externalUrl,
     addBtnText,
     history,
     isAddBtn,
@@ -76,7 +77,11 @@ const SearchComponent = (props: Props) => {
         <StyledSearch>
           <Button
             icon="plus"
-            onClick={() => history.push(`/${pathUrl}/create`)}
+            onClick={() =>
+              R.isEmpty(externalUrl)
+                ? (window.location.href = `${externalUrl}`)
+                : history.push(`/${pathUrl}/create`)
+            }
           >
             {addBtnText}
           </Button>

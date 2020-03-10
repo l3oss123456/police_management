@@ -2,7 +2,7 @@
 import React from "react";
 import { Form } from "antd";
 import * as R from "ramda";
-import FormAdminInformation from "./formAdminInformation/index";
+import FormAdminInformation from "./formAdminInformation";
 import enhance from "./enhance";
 import {
   Container,

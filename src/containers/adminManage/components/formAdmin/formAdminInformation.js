@@ -2,13 +2,13 @@
 import React from "react";
 import { Form, Input, Row, Col } from "antd";
 import * as R from "ramda";
-import Select from "../../../../../components/Select/index";
+import Select from "../../../../components/Select/index";
 import {
   SectionHeader,
   SectionContent,
   StyledWarning,
   StyledFormItem
-} from "../../Styled/index";
+} from "../Styled/index";
 
 type Props = {
   form: Any,
@@ -57,7 +57,7 @@ const formAdminInformation = (props: Props) => {
                     message: "กรุณาใส่ชื่อ !"
                   }
                 ]
-              })(<Input type="text" />)}
+              })(<Input type="text" autoFocus />)}
             </StyledFormItem>
           </Col>
         </Row>
