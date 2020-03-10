@@ -23,9 +23,7 @@ const FormLogin = (props: Props) => {
         <p>
           <Form.Item>
             {getFieldDecorator("username", {
-              rules: [
-                { required: true, message: "Please input your username !" }
-              ]
+              rules: [{ required: true, message: "กรุณากรอกชื่อผู้ใช้งาน !" }]
             })(
               <div>
                 <Input
@@ -52,7 +50,7 @@ const FormLogin = (props: Props) => {
               rules: [
                 {
                   required: true,
-                  message: "Please input your password !"
+                  message: "กรุณากรอกรหัสผ่าน !"
                 }
               ]
             })(
