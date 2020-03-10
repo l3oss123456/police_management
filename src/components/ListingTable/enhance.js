@@ -55,7 +55,7 @@ export default compose(
         : history.push(`?page=${page}&limit=${limit}`);
     },
     setNewColumns: props => () => {
-      const { tableColumns, history, schema, path } = props;
+      const { tableColumns, history, schema, path, isPrint } = props;
       const handleDelete = async (index, id) => {
         const { queryData, setQueryData } = props;
         await axios("DELETE", `${schema}/${id}`);
@@ -92,6 +92,25 @@ export default compose(
                         <IconStyled type="delete" theme="twoTone" />
                       </Popconfirm>
                     </ContainerOperation>
+                  )}
+                </div>
+              );
+            }
+          },
+          {
+            dataIndex: "print",
+            render: (text, record) => {
+              return (
+                <div>
+                  {isPrint && (
+                    <a
+                      href="# "
+                      onClick={() =>
+                        (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
+                      }
+                    >
+                      print
+                    </a>
                   )}
                 </div>
               );

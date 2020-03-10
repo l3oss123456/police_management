@@ -13,7 +13,8 @@ type Props = {
   changeLimitedPage: Number,
   pushUrl: Any,
   columns: Array,
-  queryData: Array
+  queryData: Array,
+  isPrint: Boolean
 };
 
 const ListingTable = (props: Props) => {
