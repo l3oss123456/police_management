@@ -47,7 +47,7 @@ export const StyledLogin = styled.div`
 
 export const StyledWarning = styled.div`
   color: red;
-  font-size: 10px;
+  font-size: 14px;
 `;
 export const StyledButton = styled(Button)`
   .ant-btn {
