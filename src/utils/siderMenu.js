@@ -8,19 +8,19 @@ const menu = [
   },
   {
     subMenuKey: "management",
-    titleName: "Management",
+    titleName: "การจัดการข้อมูล",
     iconType: "snippets",
     userRole: "admin",
     menu: [
       {
         key: "adminManagement",
-        name: "Admin Manage",
+        name: "ข้อมูลพนักงาน",
         link: "/management/admin",
         iconType: "user"
       },
       {
         key: "userManagement",
-        name: "User Manage",
+        name: "ข้อมูลผู้รับยา",
         link: "/management/user",
         iconType: "user"
       }
