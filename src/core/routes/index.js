@@ -44,16 +44,6 @@ const Routes = () => {
           component={userManage}
           allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
-        <GuardRoutes
-          exact
-          path="/test/admin/:id/edit"
-          component={() => {
-            window.location.href =
-              "http://localhost:3000/management/admin/:id/edit";
-            return null;
-          }}
-          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
-        />
       </Switch>
     </Router>
   );
