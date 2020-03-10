@@ -27,7 +27,7 @@ export default compose(
     "setDisplayLimitPage",
     queryDefault.displayLimit
   ),
-  withState("isLoading", "setIsLoading", true),
+  withState("isLoading", "setIsLoading", false),
   withState("queryData", "setQueryData", []),
   withState("columns", "setColumns", []),
 
@@ -141,11 +141,13 @@ export default compose(
         setQueryData,
         setTotalPage,
         setColumns,
-        setNewColumns
+        setNewColumns,
+        setIsLoading
       } = this.props;
       const { search } = location;
       history.push(`?page=${currentPage}&limit=${limitPage}`);
       const resp = await axios("GET", `${schema}${search}`);
+      if (resp.status !== 200) setIsLoading(true);
       setQueryData(R.path(["data", "data"], resp));
       setColumns(setNewColumns());
       setTotalPage(R.path(["data", "total"], resp));
