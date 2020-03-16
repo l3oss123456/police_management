@@ -17,7 +17,10 @@ type Props = {
   pushUrl: Any,
   columns: Array,
   queryData: Array,
-  isPrint: Boolean
+  isPrint: Boolean,
+  allAgent: Array,
+  selectedAgent: Number,
+  setSelectedAgent: Any
 };
 
 const ListingTable = (props: Props) => {
