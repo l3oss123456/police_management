@@ -3,6 +3,9 @@ import React from "react";
 import * as R from "ramda";
 import Pagination from "./pagination";
 import enhance from "./enhance";
+import Modal from "../Modal/index";
+import Select from "../Select/index";
+import displayNotification from "../../utils/notification";
 import { ContainerListingTable, ScrollStyled, StyledTable } from "./styled";
 
 type Props = {
@@ -27,7 +30,12 @@ const ListingTable = (props: Props) => {
     changeLimitedPage,
     pushUrl,
     columns,
-    queryData
+    queryData,
+    visibleModal,
+    setVisibleModal,
+    allAgent,
+    selectedAgent,
+    setSelectedAgent
   } = props;
   return (
     <ContainerListingTable>
@@ -49,6 +57,31 @@ const ListingTable = (props: Props) => {
         pushUrl={pushUrl}
         totalPage={totalPage}
       ></Pagination>
+      <Modal
+        destroyOnClose
+        title="ยืนยันข้อมูลการพิมพ์"
+        visible={visibleModal}
+        onOk={() => {
+          if (R.isEmpty(selectedAgent)) {
+            displayNotification("error", "กรุณาเลือกผู้รับยา");
+          } else {
+            const { selectedUserId } = props;
+            window.location.href = `https://police.netlify.com/home/${selectedUserId}/${selectedAgent}`;
+            setVisibleModal(false);
+          }
+        }}
+        onCancel={() => {
+          setVisibleModal(false);
+        }}
+      >
+        กรุณาเลือกผู้รับยา :
+        <Select
+          getIndex
+          allData={allAgent}
+          selected={setSelectedAgent}
+          width="250px"
+        ></Select>
+      </Modal>
     </ContainerListingTable>
   );
 };

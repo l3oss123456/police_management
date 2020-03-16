@@ -2,11 +2,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from "antd";
+import * as R from "ramda";
 import menu from "../../utils/siderMenu";
 import SubMenu from "antd/lib/menu/SubMenu";
 import policeIcon from "../../core/images/policeIcon.PNG";
 import Theme from "../../core/theme/index";
 import { StyledImgDiv, StyledImgLayout } from "./styled";
+import { getItemLocalStorage } from "../../core/storage/index";
 const { Sider } = Layout;
 
 type Props = {
@@ -18,6 +20,7 @@ type Props = {
 
 const SiderLayout = (props: Props) => {
   const { userRole, isCollap, selectedKey, openKey } = props;
+  const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
   return (
     <Sider
       trigger={null}
@@ -51,13 +54,23 @@ const SiderLayout = (props: Props) => {
               >
                 {menuItem.menu.map(subMenu => {
                   return (
-                    <Menu.Item key={subMenu.key}>
-                      <Link to={subMenu.link}>
-                        <Icon type={subMenu.iconType} />
-                        <span>{subMenu.name}</span>
-                      </Link>
-                    </Menu.Item>
+                    R.contains(role, subMenu.visibleRole) && (
+                      <Menu.Item key={subMenu.key}>
+                        <Link to={subMenu.link}>
+                          <Icon type={subMenu.iconType} />
+                          <span>{subMenu.name}</span>
+                        </Link>
+                      </Menu.Item>
+                    )
                   );
+                  // return (
+                  // <Menu.Item key={subMenu.key}>
+                  //   <Link to={subMenu.link}>
+                  //     <Icon type={subMenu.iconType} />
+                  //     <span>{subMenu.name}</span>
+                  //   </Link>
+                  // </Menu.Item>
+                  // );
                 })}
               </SubMenu>
             ) : (

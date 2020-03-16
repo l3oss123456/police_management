@@ -157,7 +157,7 @@ const formAdminInformation = (props: Props) => {
 
         <Row style={{ paddingTop: "30px" }}>
           <Col span={1} md={3} style={{ paddingTop: "5px" }}>
-            สิทธิ :
+            สิทธิ์ :
           </Col>
           <Col span={16} md={18}>
             <Select

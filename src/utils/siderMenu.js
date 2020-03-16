@@ -14,15 +14,17 @@ const menu = [
     menu: [
       {
         key: "adminManagement",
-        name: "ข้อมูลพนักงาน",
+        name: "ข้อมูลผู้ดูแลระบบ",
         link: "/management/admin",
-        iconType: "user"
+        iconType: "user",
+        visibleRole: ["แอดมิน"]
       },
       {
         key: "userManagement",
         name: "ข้อมูลผู้รับยา",
         link: "/management/user",
-        iconType: "user"
+        iconType: "user",
+        visibleRole: ["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]
       }
     ]
   },
