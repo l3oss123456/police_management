@@ -74,7 +74,7 @@ export default compose(
           };
           await axios("PUT", `officers/${id}`, data);
           history.push("/management/admin");
-          displayNotification("success", "Edit Successful");
+          displayNotification("success", "แก้ไขข้อมูลสำเร็จ");
         }
       });
     }

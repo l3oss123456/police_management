@@ -30,6 +30,10 @@ export default compose(
   withState("isLoading", "setIsLoading", false),
   withState("queryData", "setQueryData", []),
   withState("columns", "setColumns", []),
+  withState("visibleModal", "setVisibleModal", false),
+  withState("allAgent", "setAllAgent", []),
+  withState("selectedAgent", "setSelectedAgent", ""),
+  withState("selectedUserId", "setSelectedUserId", ""),
 
   withHandlers({
     pushUrl: props => value => {
@@ -68,7 +72,7 @@ export default compose(
         await axios("DELETE", `${schema}/${id}`);
         queryData.splice(index, 1);
         setQueryData(queryData);
-        displayNotification("success", "Delete Successful");
+        displayNotification("success", "ลบข้อมูลสำเร็จ");
       };
 
       const role = R.path(
@@ -109,13 +113,33 @@ export default compose(
           {
             dataIndex: "print",
             render: (text, record) => {
+              const {
+                setVisibleModal,
+                setSelectedAgent,
+                setAllAgent,
+                setSelectedUserId
+              } = props;
               return (
                 <div>
                   {isPrint && role !== "ผู้อ่าน" && (
                     <a
                       href="# "
                       onClick={() =>
-                        (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
+                        R.isEmpty(record.agent)
+                          ? (window.location.href = `https://police.netlify.com/home/${record.id}`)
+                          : (setSelectedUserId(record.id),
+                            setVisibleModal(true),
+                            setAllAgent(
+                              record.agent.map((agent, index) => {
+                                return (
+                                  agent.prefix +
+                                  agent.firstName +
+                                  " " +
+                                  agent.lastName
+                                );
+                              })
+                            ),
+                            setSelectedAgent(0))
                       }
                     >
                       <u>พิมพ์</u>

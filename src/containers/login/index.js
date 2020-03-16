@@ -30,7 +30,7 @@ const Login = (props: Props) => {
   } = props;
   return (
     <StyledBackgroundLayout>
-      {isLogin === true && <Redirect to={{ pathname: "/management/admin" }} />}
+      {isLogin === true && <Redirect to={{ pathname: "/management/user" }} />}
       <StyledCard>
         <StyledHeader>
           <StyledImgLayout src={policeIcon} />

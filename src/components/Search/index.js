@@ -33,7 +33,7 @@ const SearchComponent = (props: Props) => {
     setRangeDate
   } = props;
   const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
-  const dateFormat = "YYYY/MM/DD";
+  const dateFormat = "YYYY-MM-DD";
   return (
     <StyledContainerSearch>
       <StyledSearch width="280px">
