@@ -10,9 +10,19 @@ export default compose(
   withRouter,
   withState("searchValue", "setSearchValue", ""),
   withState("rangeDate", "setRangeDate", ""),
+  withState("selectedGender", "setSelectedGender", "ทั้งหมด"),
+  withState("selectedRangeAge", "setSelectedRangeAge", "ทั้งหมด"),
+
   withHandlers({
     pushSearchUrl: props => async () => {
-      const { searchValue, history, location, rangeDate } = props;
+      const {
+        searchValue,
+        selectedGender,
+        selectedRangeAge,
+        history,
+        location,
+        rangeDate
+      } = props;
       const oldQs = qs.parse(location.search, {
         ignoreQueryPrefix: true
       });
@@ -22,7 +32,8 @@ export default compose(
       ];
       const searchOptions = objectToQueryString({
         search: searchValue,
-        // selected: selectValue,
+        gender: selectedGender === "ทั้งหมด" ? "" : selectedGender,
+        age: selectedRangeAge === "ทั้งหมด" ? "" : selectedRangeAge,
         duration: momentRangeDate && momentRangeDate
       });
       queryDefault.search = searchOptions;

@@ -16,6 +16,8 @@ const userManage = props => {
           externalUrl="http://localhost:3000/management/admin"
           addBtnText="ผู้รับยา"
           isAddBtn
+          isSelectedGender
+          isSelectedRangeAge
           isRangePicker
         />
         <Table

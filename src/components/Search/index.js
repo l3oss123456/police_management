@@ -4,8 +4,9 @@ import { Input, Button, DatePicker } from "antd";
 import moment from "moment";
 import * as R from "ramda";
 import { getItemLocalStorage } from "../../core/storage/index";
+import Select from "../Select/index";
 import enhance from "./enhance";
-import { StyledContainerSearch, StyledSearch } from "./styled";
+import { StyledContainerSearch, StyledSearch, Text } from "./styled";
 
 const { RangePicker } = DatePicker;
 
@@ -17,7 +18,13 @@ type Props = {
   isAddBtn: Boolean,
   isRangePicker: Boolean,
   setSearchValue: Any,
-  setRangeDate: Any
+  setRangeDate: Any,
+  isSelectedGender: Boolean,
+  selectedGender: String,
+  setSelectedGender: Any,
+  isSelectedRangeAge: Boolean,
+  selectedRangeAge: String,
+  setSelectedRangeAge: Any
 };
 
 const SearchComponent = (props: Props) => {
@@ -30,7 +37,13 @@ const SearchComponent = (props: Props) => {
     isAddBtn,
     isRangePicker,
     setSearchValue,
-    setRangeDate
+    setRangeDate,
+    isSelectedGender,
+    selectedGender,
+    setSelectedGender,
+    isSelectedRangeAge,
+    selectedRangeAge,
+    setSelectedRangeAge
   } = props;
   const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
   const dateFormat = "YYYY-MM-DD";
@@ -40,19 +53,51 @@ const SearchComponent = (props: Props) => {
         <Input
           autoFocus
           placeholder="ค้นหาข้อมูล"
-          // onChange={e => debounceSearchValue(e.target.value)}
           onChange={e => setSearchValue(e.target.value)}
           onPressEnter={() => pushSearchUrl()}
         />
       </StyledSearch>
 
-      <StyledSearch>
-        {isRangePicker && (
+      {isSelectedGender && (
+        <StyledSearch width="170px">
+          <Text>เพศ :</Text>
+          <Select
+            defaultData={selectedGender}
+            allData={["ทั้งหมด", "ชาย", "หญิง"]}
+            selected={setSelectedGender}
+            width="100px"
+          ></Select>
+        </StyledSearch>
+      )}
+
+      {isSelectedRangeAge && (
+        <StyledSearch width="170px">
+          <Text>อายุ :</Text>
+          <Select
+            defaultData={selectedRangeAge}
+            allData={[
+              "ทั้งหมด",
+              "1-10",
+              "10-20",
+              "20-30",
+              "30-40",
+              "40-50",
+              "50-60",
+              "60+"
+            ]}
+            selected={setSelectedRangeAge}
+            width="100px"
+          ></Select>
+        </StyledSearch>
+      )}
+
+      {isRangePicker && (
+        <StyledSearch width="280px">
           <RangePicker
-            // defaultValue={[
-            //   moment("2015/01/01", dateFormat),
-            //   moment("2015/01/01", dateFormat)
-            // ]}
+            defaultValue={[
+              moment(moment().format(dateFormat)),
+              moment(moment().format(dateFormat))
+            ]}
             disabledDate={current => {
               return current && current > moment().endOf("day");
             }}
@@ -65,8 +110,8 @@ const SearchComponent = (props: Props) => {
             format={dateFormat}
             onChange={value => setRangeDate(value)}
           />
-        )}
-      </StyledSearch>
+        </StyledSearch>
+      )}
 
       <StyledSearch>
         <Button icon="search" onClick={() => pushSearchUrl()}>
