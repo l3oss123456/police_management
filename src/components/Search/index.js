@@ -94,10 +94,10 @@ const SearchComponent = (props: Props) => {
       {isRangePicker && (
         <StyledSearch width="280px">
           <RangePicker
-            defaultValue={[
-              moment(moment().format(dateFormat)),
-              moment(moment().format(dateFormat))
-            ]}
+            // defaultValue={[
+            //   moment(moment().format(dateFormat)),
+            //   moment(moment().format(dateFormat))
+            // ]}
             disabledDate={current => {
               return current && current > moment().endOf("day");
             }}

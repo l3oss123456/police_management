@@ -26,15 +26,14 @@ export default compose(
       const oldQs = qs.parse(location.search, {
         ignoreQueryPrefix: true
       });
-      const momentRangeDate = [
-        moment(rangeDate[0]).format("YYYY-MM-DD"),
-        moment(rangeDate[1]).format("YYYY-MM-DD")
-      ];
       const searchOptions = objectToQueryString({
         search: searchValue,
         gender: selectedGender === "ทั้งหมด" ? "" : selectedGender,
         age: selectedRangeAge === "ทั้งหมด" ? "" : selectedRangeAge,
-        duration: momentRangeDate && momentRangeDate
+        duration: !R.isEmpty(rangeDate) && [
+          moment(rangeDate[0]).format("YYYY-MM-DD"),
+          moment(rangeDate[1]).format("YYYY-MM-DD")
+        ]
       });
       queryDefault.search = searchOptions;
       var newQs = "";
