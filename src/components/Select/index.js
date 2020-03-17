@@ -21,7 +21,7 @@ const ComponentSelect = (props: Props) => {
   return allData && mode !== "multiple" ? (
     getIndex ? (
       <StyledSelect
-        value={allData[0]}
+        value={defaultData}
         onChange={handleChange}
         style={{ width }}
       >

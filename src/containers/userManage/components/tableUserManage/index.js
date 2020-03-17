@@ -3,7 +3,7 @@ import * as R from "ramda";
 
 export default [
   {
-    title: "เลขบัตร",
+    title: "บัตรประชาชน",
     dataIndex: "idCardNo",
     key: "idCardNo"
   },

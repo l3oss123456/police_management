@@ -13,7 +13,7 @@ const userManage = props => {
         openKey="management"
       >
         <Search
-          externalUrl="http://localhost:3000/management/admin"
+          externalUrl="https://festive-rosalind-dd31f0.netlify.com/"
           addBtnText="ผู้รับยา"
           isAddBtn
           isSelectedGender
@@ -29,7 +29,6 @@ const userManage = props => {
             height: window.innerHeight - 310 + "px"
           }}
           isPrint
-          isUserManagePage
         />
       </Layout>
     </div>

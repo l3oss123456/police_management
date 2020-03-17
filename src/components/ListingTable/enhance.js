@@ -59,14 +59,7 @@ export default compose(
         : history.push(`?page=${page}&limit=${limit}`);
     },
     setNewColumns: props => () => {
-      const {
-        tableColumns,
-        history,
-        schema,
-        path,
-        isPrint,
-        isUserManagePage
-      } = props;
+      const { tableColumns, history, schema, path, isPrint } = props;
       const handleDelete = async (index, id) => {
         const { queryData, setQueryData } = props;
         await axios("DELETE", `${schema}/${id}`);
@@ -92,10 +85,13 @@ export default compose(
                       <IconStyled
                         type="edit"
                         theme="twoTone"
+                        // onClick={() =>
+                        //   isUserManagePage
+                        //     ? (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
+                        //     : history.push(`/${path}/${record.id}/edit`)
+                        // }
                         onClick={() =>
-                          isUserManagePage
-                            ? (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
-                            : history.push(`/${path}/${record.id}/edit`)
+                          history.push(`/${path}/${record.id}/edit`)
                         }
                       />
                       <Popconfirm
@@ -131,7 +127,10 @@ export default compose(
                               ["id"],
                               JSON.parse(getItemLocalStorage("userInfo"))
                             )),
-                            (window.location.href = `https://police.netlify.com/home/${userId}/${record.id}`))
+                            window.open(
+                              `https://police.netlify.com/home/${userId}/${record.id}`,
+                              "_blank"
+                            ))
                           : (setSelectedUserId(record.id),
                             setVisibleModal(true),
                             setAllAgent(

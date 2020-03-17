@@ -20,6 +20,7 @@ export const Footer = styled.div`
   position: sticky;
   width: 100%;
   height: 64px;
+  bottom: 0;
 `;
 export const StyledButtonCancel = styled(Button)`
   width: 130px;
