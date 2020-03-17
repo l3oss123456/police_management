@@ -6,6 +6,7 @@ import enhance from "./enhance";
 import Modal from "../Modal/index";
 import Select from "../Select/index";
 import displayNotification from "../../utils/notification";
+import { getItemLocalStorage } from "../../core/storage/index";
 import { ContainerListingTable, ScrollStyled, StyledTable } from "./styled";
 
 type Props = {
@@ -69,7 +70,11 @@ const ListingTable = (props: Props) => {
             displayNotification("error", "กรุณาเลือกผู้รับยา");
           } else {
             const { selectedUserId } = props;
-            window.location.href = `https://police.netlify.com/home/${selectedUserId}/${selectedAgent}`;
+            const userId = R.path(
+              ["id"],
+              JSON.parse(getItemLocalStorage("userInfo"))
+            );
+            window.location.href = `https://police.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`;
             setVisibleModal(false);
           }
         }}

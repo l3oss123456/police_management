@@ -54,6 +54,7 @@ export default compose(
             setItemLocalStorage(
               "userInfo",
               JSON.stringify({
+                id: resp.data.data.id,
                 name: resp.data.data.firstName + " " + resp.data.data.lastName,
                 role: resp.data.data.role
               })
