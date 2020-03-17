@@ -7,6 +7,7 @@ import adminManage from "../../containers/adminManage/index";
 import addAdmin from "../../containers/adminManage/components/addAdmin/index";
 import editAdmin from "../../containers/adminManage/components/editAdmin/index";
 import userManage from "../../containers/userManage/index";
+import editUser from "../../containers/userManage/components/editUser/index";
 
 const Routes = () => {
   return (
@@ -42,6 +43,12 @@ const Routes = () => {
           exact
           path="/management/user"
           component={userManage}
+          allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
+        />
+        <GuardRoutes
+          exact
+          path="/management/user/:id/edit"
+          component={editUser}
           allowRole={["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]}
         />
       </Switch>

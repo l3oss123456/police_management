@@ -123,9 +123,9 @@ const SearchComponent = (props: Props) => {
           <Button
             icon="plus"
             onClick={() =>
-              R.isEmpty(externalUrl)
-                ? (window.location.href = `${externalUrl}`)
-                : history.push(`/${pathUrl}/create`)
+              !externalUrl && pathUrl
+                ? history.push(`/${pathUrl}/create`)
+                : window.open(`${externalUrl}`, "_blank")
             }
           >
             {addBtnText}

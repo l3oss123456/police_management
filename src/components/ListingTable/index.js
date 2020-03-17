@@ -74,7 +74,11 @@ const ListingTable = (props: Props) => {
               ["id"],
               JSON.parse(getItemLocalStorage("userInfo"))
             );
-            window.location.href = `https://police.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`;
+            // window.location.href = `https://police.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`;
+            window.open(
+              `https://police.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`,
+              "_blank"
+            );
             setVisibleModal(false);
           }
         }}
@@ -86,6 +90,7 @@ const ListingTable = (props: Props) => {
         <Select
           getIndex
           allData={allAgent}
+          defaultData={selectedAgent}
           selected={setSelectedAgent}
           width="250px"
         ></Select>

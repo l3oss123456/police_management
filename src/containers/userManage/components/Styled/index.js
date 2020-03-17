@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row, Button, Form } from "antd";
+import { Row, Button, Form, Input } from "antd";
 import Theme from "../../../../core/theme/index";
 const { Item } = Form;
 
@@ -20,6 +20,7 @@ export const Footer = styled.div`
   position: sticky;
   width: 100%;
   height: 64px;
+  bottom: 0;
 `;
 export const StyledButtonCancel = styled(Button)`
   width: 130px;
@@ -53,6 +54,8 @@ export const SectionHeader = styled.h3`
   background: #fafafa;
   border-bottom: 1px solid #ededed;
   padding: 15px 20px;
+  font-family: ${Theme.fontFamily.primaryBold}
+  font-size: ${Theme.fontSize.text}
 `;
 export const SectionContent = styled.div`
   padding: 20px;
@@ -66,4 +69,29 @@ export const StyledWarning = styled.div`
 export const StyledFormItem = styled(Item)`
   font-family: ${Theme.fontFamily.primary};
   font-size: ${Theme.fontSize.text};
+`;
+
+export const ScrollStyled = styled.div`
+  background: white;
+  height: ${props => (props.height ? props.height : "")};
+  overflow-y: ${props => (props.height ? "scroll" : "")};
+  width: ${props => (props.width ? props.width : "")};
+  overflow-x: ${props => (props.width ? "scroll" : "")};
+`;
+
+export const SectionUserInformation = styled.div`
+  display: flex;
+  justify-content: ${props =>
+    props.justifyContent ? props.justifyContent : "space-around"};
+`;
+
+export const ContainerTopic = styled.div`
+  font-size: ${Theme.fontSize.text}
+  font-family: ${Theme.fontFamily.primary}
+  margin-top: 5px;
+  margin-left: ${props => (props.marginLeft ? props.marginLeft : "")}
+  `;
+
+export const InputStyled = styled(Input)`
+  width: ${props => (props.width ? props.width : "200px")};
 `;
