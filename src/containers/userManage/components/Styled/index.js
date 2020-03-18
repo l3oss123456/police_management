@@ -79,10 +79,17 @@ export const ScrollStyled = styled.div`
   overflow-x: ${props => (props.width ? "scroll" : "")};
 `;
 
+export const ContainerUserInformation = styled.div`
+  display: flex;
+  justify-content: ${props =>
+    props.justifyContent ? props.justifyContent : "space-around"};
+`;
+
 export const SectionUserInformation = styled.div`
   display: flex;
   justify-content: ${props =>
     props.justifyContent ? props.justifyContent : "space-around"};
+  width: 50%;
 `;
 
 export const ContainerTopic = styled.div`
