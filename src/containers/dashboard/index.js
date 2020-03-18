@@ -4,6 +4,7 @@ import Chart from "./components/Chart/index";
 import Search from "../../components/Search/index";
 import Table from "../../components/ListingTable/index";
 import { ContainerSection, ContainerInfo } from "./components/Styled/index";
+import columns from "../userManage/components/tableUserManage/index";
 
 const Dashboard = props => {
   const chartData = [
@@ -71,8 +72,11 @@ const Dashboard = props => {
               width: window.innerWidth - 330 + "px"
             }}
           >
-            <Search isRangePicker />
+            <Search isSelectedGender isSelectedRangeAge isRangePicker />
             <Table
+              schema="users"
+              path="management/user"
+              tableColumns={columns}
               scrollSize={{
                 width: false,
                 height: window.innerHeight - 500 + "px"
