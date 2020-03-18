@@ -15,7 +15,7 @@ export default compose(
         chart.data = chartData;
         // Create axes
         let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-        categoryAxis.dataFields.category = "country";
+        categoryAxis.dataFields.category = "receiveDate";
         // categoryAxis.title.text = "Countries";
         categoryAxis.renderer.grid.template.location = 0;
         categoryAxis.renderer.minGridDistance = 30; //spacing each of categoryAxis
@@ -32,11 +32,11 @@ export default compose(
         // valueAxis.title.text = "Litres sold (M)";
         let columnSeries = chart.series.push(new am4charts.ColumnSeries3D());
         columnSeries.sequencedInterpolation = true;
-        columnSeries.name = "Sales";
+        columnSeries.name = "จำนวนผู้รับยา";
 
         // columnSeries.sequencedInterpolation = true;
-        columnSeries.dataFields.valueY = "litres";
-        columnSeries.dataFields.categoryX = "country";
+        columnSeries.dataFields.valueY = "totalReceive";
+        columnSeries.dataFields.categoryX = "receiveDate";
         columnSeries.tooltipText = "{name}: [bold] {valueY}[/]";
         columnSeries.columns.template.strokeWidth = 0;
         columnSeries.tooltip.pointerOrientation = "vertical";
@@ -51,11 +51,11 @@ export default compose(
           return chart.colors.getIndex(target.dataItem.index);
         });
         let lineSeries = chart.series.push(new am4charts.LineSeries());
-        lineSeries.name = "Units";
-        lineSeries.stroke = am4core.color("#0278FC");
+        lineSeries.name = "ผู้อื่นรับยา";
+        lineSeries.stroke = am4core.color("#FF509D");
         lineSeries.strokeWidth = 3;
-        lineSeries.dataFields.valueY = "units";
-        lineSeries.dataFields.categoryX = "country";
+        lineSeries.dataFields.valueY = "totalAgentReceive";
+        lineSeries.dataFields.categoryX = "receiveDate";
         lineSeries.tooltipText = "{name}: [bold]{valueY}[/]";
         //create circle bullet
         let circleBullet = lineSeries.bullets.push(
@@ -63,6 +63,21 @@ export default compose(
         );
         circleBullet.circle.fill = am4core.color("#fff");
         circleBullet.circle.strokeWidth = 2;
+
+        let lineSeries2 = chart.series.push(new am4charts.LineSeries());
+        lineSeries2.name = "รับยาด้วยตนเอง";
+        lineSeries2.stroke = am4core.color("#FF9300");
+        lineSeries2.strokeWidth = 3;
+        lineSeries2.dataFields.valueY = "totalBySelfReceive";
+        lineSeries2.dataFields.categoryX = "receiveDate";
+        lineSeries2.tooltipText = "{name}: [bold]{valueY}[/]";
+        //create circle bullet
+        let circleBullet2 = lineSeries2.bullets.push(
+          new am4charts.CircleBullet()
+        );
+        circleBullet2.circle.fill = am4core.color("#fff");
+        circleBullet2.circle.strokeWidth = 2;
+
         chart.legend = new am4charts.Legend();
         //set cursor
         chart.cursor = new am4charts.XYCursor();
