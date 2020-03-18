@@ -59,7 +59,14 @@ export default compose(
         : history.push(`?page=${page}&limit=${limit}`);
     },
     setNewColumns: props => () => {
-      const { tableColumns, history, schema, path, isPrint } = props;
+      const {
+        tableColumns,
+        history,
+        schema,
+        path,
+        isReadOnly,
+        isPrint
+      } = props;
       const handleDelete = async (index, id) => {
         const { queryData, setQueryData } = props;
         await axios("DELETE", `${schema}/${id}`);
@@ -80,16 +87,11 @@ export default compose(
             render: (text, record, index) => {
               return (
                 <div>
-                  {role !== "ผู้อ่าน" && (
+                  {role !== "ผู้อ่าน" && !isReadOnly && (
                     <ContainerOperation>
                       <IconStyled
                         type="edit"
                         theme="twoTone"
-                        // onClick={() =>
-                        //   isUserManagePage
-                        //     ? (window.location.href = `http://localhost:3000/management/admin/${record.id}/edit`)
-                        //     : history.push(`/${path}/${record.id}/edit`)
-                        // }
                         onClick={() =>
                           history.push(`/${path}/${record.id}/edit`)
                         }
