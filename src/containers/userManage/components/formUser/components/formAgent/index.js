@@ -14,13 +14,14 @@ const FormAgent = props => {
       <SectionHeader>ข้อมูลตัวแทนผู้รับยา</SectionHeader>
       <SectionContent>
         <Button
+          icon="plus"
           onClick={() => handleAddRow()}
           type="primary"
           style={{
-            margin: "0px 0px 5px 15px"
+            margin: "0px 0px 15px 15px"
           }}
         >
-          เพื่มตัวแทนผู้รับยา
+          ตัวแทนผู้รับยา
         </Button>
 
         <ScrollStyled width={window.innerWidth - 410 + "px"}>
