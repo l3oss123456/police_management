@@ -40,7 +40,7 @@ export default compose(
       const { limitPage, history } = props;
       const { search } = queryDefault;
       search
-        ? history.push(`?page=${value}&limit=${limitPage}&search=${search}`)
+        ? history.push(`?page=${value}&limit=${limitPage}&${search}`)
         : history.push(`?page=${value}&limit=${limitPage}`);
     },
     changeLimitedPage: props => limit => {
@@ -55,7 +55,7 @@ export default compose(
         page = currentPage;
       }
       search
-        ? history.push(`?page=${page}&limit=${limit}&search=${search}`)
+        ? history.push(`?page=${page}&limit=${limit}&${search}`)
         : history.push(`?page=${page}&limit=${limit}`);
     },
     setNewColumns: props => () => {
