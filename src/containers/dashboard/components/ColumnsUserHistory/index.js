@@ -40,7 +40,8 @@ export default [
   {
     title: "ประเภทการรับยา",
     render: (text, record, index) => {
-      return R.isEmpty(record.agent) ? <div>ตนเอง</div> : <div>ผู้อื่น</div>;
+      const agent = R.pathOr("", ["agent"], record);
+      return agent === "" ? <div>ตนเอง</div> : <div>ผู้อื่น</div>;
     }
   }
 ];

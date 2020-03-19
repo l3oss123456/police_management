@@ -16,9 +16,6 @@ const userManage = props => {
           externalUrl="https://festive-rosalind-dd31f0.netlify.com/"
           addBtnText="ผู้รับยา"
           isAddBtn
-          isSelectedGender
-          isSelectedRangeAge
-          isRangePicker
         />
         <Table
           schema="users"

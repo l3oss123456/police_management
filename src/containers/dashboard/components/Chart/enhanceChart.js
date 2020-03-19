@@ -5,6 +5,7 @@ import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import * as R from "ramda";
 
 am4core.useTheme(am4themes_animated);
+
 export default compose(
   lifecycle({
     async componentDidMount() {
