@@ -4,6 +4,6 @@ const queryDefault = {
   total: 0,
   filter: {},
   search: "",
-  displayLimit: ["10", "20", "30", "40"]
+  displayLimit: ["1", "20", "30", "40"]
 };
 export default queryDefault;
