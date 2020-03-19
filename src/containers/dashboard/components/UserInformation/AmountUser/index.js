@@ -9,7 +9,7 @@ import {
 
 const UserInformation = props => {
   const { amountUser } = props;
-  const { male, female } = amountUser;
+  const { male, female, total } = amountUser;
   return (
     <div>
       <ContainerTopic>
@@ -31,7 +31,7 @@ const UserInformation = props => {
         </ContainerInformation>
         <ContainerInformation>
           <Text color>รวม</Text>
-          <Text bold>{amountUser.total}</Text>
+          <Text bold>{total}</Text>
         </ContainerInformation>
       </ContainerDetail>
     </div>
