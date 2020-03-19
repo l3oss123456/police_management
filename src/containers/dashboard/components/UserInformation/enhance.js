@@ -111,6 +111,15 @@ const amountUserSetting = data => {
     };
   }
 };
+const setQueryString = data => {
+  let str = [];
+  for (let key in data) {
+    if (data.hasOwnProperty(key) && data[key]) {
+      str.push(data[key]);
+    }
+  }
+  return str.join("&");
+};
 
 export default compose(
   withRouter,
@@ -138,10 +147,10 @@ export default compose(
       } = this.props;
       const { search } = location;
       if (prevProps.location.search !== search) {
-        setChartData("");
-        setAmountReceiveType("");
-        setAmountUser("");
-        const resp = await axios("GET", `users-history${search}`);
+        const searchLength = search.split("&").length;
+        const searchValue = search.split("&").slice(2, searchLength);
+        const queryString = setQueryString(searchValue);
+        const resp = await axios("GET", `users-history?${queryString}`);
         const respData = R.path(["data", "data"], resp);
         const datesArray = setDatesArray(respData);
         setChartData(chartDataSetting(respData, datesArray));
