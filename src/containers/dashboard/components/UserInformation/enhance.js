@@ -147,6 +147,9 @@ export default compose(
       } = this.props;
       const { search } = location;
       if (prevProps.location.search !== search) {
+        setChartData(chartDataSetting(""));
+        setAmountReceiveType("");
+        setAmountUser("");
         const searchLength = search.split("&").length;
         const searchValue = search.split("&").slice(2, searchLength);
         const queryString = setQueryString(searchValue);
