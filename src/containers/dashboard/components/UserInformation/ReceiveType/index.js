@@ -9,6 +9,7 @@ import {
 
 const UserInformation = props => {
   const { receiveType } = props;
+  const { totalBySelfReceive, totalAgentReceive } = receiveType;
   return (
     <div>
       <ContainerTopic>
@@ -22,11 +23,11 @@ const UserInformation = props => {
       <ContainerDetail>
         <ContainerInformation>
           <Text color>ตนเอง</Text>
-          <Text bold>{receiveType.totalBySelfReceive}</Text>
+          <Text bold>{totalBySelfReceive}</Text>
         </ContainerInformation>
         <ContainerInformation>
           <Text color>ผู้อื่น</Text>
-          <Text bold>{receiveType.totalAgentReceive}</Text>
+          <Text bold>{totalAgentReceive}</Text>
         </ContainerInformation>
       </ContainerDetail>
     </div>

@@ -37,7 +37,6 @@ export const Text = styled.div`
 `;
 
 export const ContainerDetail = styled.div`
-  // margin-top: 20px;
   padding: 10px;
 `;
 

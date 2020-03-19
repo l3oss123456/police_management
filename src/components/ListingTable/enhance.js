@@ -177,6 +177,7 @@ export default compose(
       const { search } = location;
       history.push(`?page=${currentPage}&limit=${limitPage}`);
       const resp = await axios("GET", `${schema}${search}`);
+
       if (resp.status !== 200) setIsLoading(true);
       setQueryData(R.path(["data", "data"], resp));
       setColumns(setNewColumns());

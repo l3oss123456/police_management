@@ -8,7 +8,7 @@ am4core.useTheme(am4themes_animated);
 
 export default compose(
   lifecycle({
-    async componentDidMount() {
+    async componentDidUpdate() {
       const { chartName, chartData } = this.props;
       if (!R.isEmpty(chartData)) {
         let chart = am4core.create(`${chartName}`, am4charts.XYChart);
