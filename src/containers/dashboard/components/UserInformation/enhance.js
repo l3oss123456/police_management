@@ -147,7 +147,7 @@ export default compose(
       } = this.props;
       const { search } = location;
       if (prevProps.location.search !== search) {
-        setChartData(chartDataSetting(""));
+        setChartData("");
         setAmountReceiveType("");
         setAmountUser("");
         const searchLength = search.split("&").length;
@@ -163,11 +163,12 @@ export default compose(
     }
   }),
   branch(props => {
-    const { chartData, amountReceiveType } = props;
+    const { chartData, amountReceiveType, amountUser } = props;
     if (
       props.isLoading === true &&
       R.isEmpty(chartData) &&
-      R.isEmpty(amountReceiveType)
+      R.isEmpty(amountReceiveType) &&
+      R.isEmpty(amountUser)
     ) {
       return true;
     } else {
