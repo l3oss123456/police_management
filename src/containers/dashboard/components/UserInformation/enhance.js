@@ -37,7 +37,8 @@ const chartDataSetting = (data, dates) => {
       }, 0);
       const totalAgentReceive = data.reduce((sum, item) => {
         const dateItem = moment(item.createdAt).format("YYYY-MM-DD");
-        if (dateItem === date && !R.isEmpty(item.agent)) {
+        const agent = R.pathOr("", ["agent"], item);
+        if (dateItem === date && agent !== "") {
           return sum + 1;
         }
         return sum;
