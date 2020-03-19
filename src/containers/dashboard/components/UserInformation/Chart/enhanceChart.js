@@ -10,7 +10,6 @@ export default compose(
   lifecycle({
     async componentDidUpdate() {
       const { chartName, chartData } = this.props;
-      console.log(chartData);
       if (!R.isEmpty(chartData)) {
         let chart = am4core.create(`${chartName}`, am4charts.XYChart);
         chart.scrollbarX = new am4core.Scrollbar(); //add scroll bar
