@@ -64,7 +64,8 @@ const chartDataSetting = (data, dates) => {
 const receiveTypeSetting = data => {
   if (!R.isEmpty(data)) {
     const totalAgentReceive = data.reduce((sum, item) => {
-      if (!R.isEmpty(item.agent)) {
+      const agent = R.pathOr("", ["agent"], item);
+      if (agent !== "") {
         return sum + 1;
       }
       return sum;

@@ -1,7 +1,7 @@
 const menu = [
   {
     key: "dashboard",
-    name: "Dashboard",
+    name: "แผนภูมิ",
     iconType: "area-chart",
     link: "/dashboard",
     userRole: "admin"
@@ -27,12 +27,6 @@ const menu = [
         visibleRole: ["แอดมิน", "ผู้แก้ไข", "ผู้อ่าน"]
       }
     ]
-  },
-  {
-    key: "1",
-    name: "user menu 1",
-    iconType: "user",
-    userRole: "user"
   }
 ];
 export default menu;

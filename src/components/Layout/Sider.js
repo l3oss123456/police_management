@@ -63,14 +63,6 @@ const SiderLayout = (props: Props) => {
                       </Menu.Item>
                     )
                   );
-                  // return (
-                  // <Menu.Item key={subMenu.key}>
-                  //   <Link to={subMenu.link}>
-                  //     <Icon type={subMenu.iconType} />
-                  //     <span>{subMenu.name}</span>
-                  //   </Link>
-                  // </Menu.Item>
-                  // );
                 })}
               </SubMenu>
             ) : (
