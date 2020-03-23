@@ -5,7 +5,6 @@ import Pagination from "./pagination";
 import enhance from "./enhance";
 import Modal from "../Modal/index";
 import Select from "../Select/index";
-import displayNotification from "../../utils/notification";
 import { getItemLocalStorage } from "../../core/storage/index";
 import { ContainerListingTable, ScrollStyled, StyledTable } from "./styled";
 
@@ -67,7 +66,16 @@ const ListingTable = (props: Props) => {
         visible={visibleModal}
         onOk={() => {
           if (R.isEmpty(selectedAgent)) {
-            displayNotification("error", "กรุณาเลือกผู้รับยา");
+            const { selectedUserId } = props;
+            const userId = R.path(
+              ["id"],
+              JSON.parse(getItemLocalStorage("userInfo"))
+            );
+            window.open(
+              `https://police.netlify.com/home/${userId}/${selectedUserId}`,
+              "_blank"
+            );
+            setVisibleModal(false);
           } else {
             const { selectedUserId } = props;
             const userId = R.path(

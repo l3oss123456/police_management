@@ -117,7 +117,6 @@ export default compose(
                 setAllAgent,
                 setSelectedUserId
               } = props;
-              let userId;
               return (
                 <div>
                   {isPrint && role !== "ผู้อ่าน" && (
@@ -125,14 +124,27 @@ export default compose(
                       href="# "
                       onClick={() =>
                         R.isEmpty(record.agent)
-                          ? ((userId = R.path(
-                              ["id"],
-                              JSON.parse(getItemLocalStorage("userInfo"))
-                            )),
-                            window.open(
-                              `https://police.netlify.com/home/${userId}/${record.id}`,
-                              "_blank"
-                            ))
+                          ? // ((userId = R.path(
+                            //     ["id"],
+                            //     JSON.parse(getItemLocalStorage("userInfo"))
+                            //   )),
+                            //   window.open(
+                            //     `https://police.netlify.com/home/${userId}/${record.id}`,
+                            //     "_blank"
+                            //   ))
+                            (setSelectedUserId(record.id),
+                            setVisibleModal(true),
+                            setAllAgent(
+                              record.agent.map((agent, index) => {
+                                return (
+                                  agent.prefix +
+                                  agent.firstName +
+                                  " " +
+                                  agent.lastName
+                                );
+                              })
+                            ),
+                            setSelectedAgent(""))
                           : (setSelectedUserId(record.id),
                             setVisibleModal(true),
                             setAllAgent(
