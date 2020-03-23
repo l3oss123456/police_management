@@ -26,7 +26,7 @@ const UserInformation = props => {
           <Text bold>{totalBySelfReceive}</Text>
         </ContainerInformation>
         <ContainerInformation>
-          <Text color>ผู้อื่น</Text>
+          <Text color>ตัวแทน</Text>
           <Text bold>{totalAgentReceive}</Text>
         </ContainerInformation>
       </ContainerDetail>
