@@ -52,7 +52,7 @@ export default compose(
           return chart.colors.getIndex(target.dataItem.index);
         });
         let lineSeries = chart.series.push(new am4charts.LineSeries());
-        lineSeries.name = "ผู้อื่นรับยา";
+        lineSeries.name = "ตัวแทน";
         lineSeries.stroke = am4core.color("#FF509D");
         lineSeries.strokeWidth = 3;
         lineSeries.dataFields.valueY = "totalAgentReceive";
@@ -66,7 +66,7 @@ export default compose(
         circleBullet.circle.strokeWidth = 2;
 
         let lineSeries2 = chart.series.push(new am4charts.LineSeries());
-        lineSeries2.name = "รับยาด้วยตนเอง";
+        lineSeries2.name = "ตนเอง";
         lineSeries2.stroke = am4core.color("#FF9300");
         lineSeries2.strokeWidth = 3;
         lineSeries2.dataFields.valueY = "totalBySelfReceive";
