@@ -197,7 +197,6 @@ export default compose(
       const { search } = location;
       if (prevProps.location.search !== search) {
         const resp = await axios("GET", `${schema}${search}`);
-        console.log(search);
         setQueryData(R.path(["data", "data"], resp));
         setCurrentPage(search.substring(6, 7));
         setTotalPage(R.path(["data", "total"], resp));
