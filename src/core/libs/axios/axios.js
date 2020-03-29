@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const http = async (method, pathUrl, body) => {
+const http = async (method, pathUrl, body, isBaseUrl) => {
   const baseUrl = "https://police-cloud.herokuapp.com/";
   try {
     const resp = await axios({
-      url: `${baseUrl}${pathUrl}`,
+      url: !isBaseUrl ? `${baseUrl}${pathUrl}` : `${pathUrl}`,
       data: body,
       method,
       headers: {
