@@ -124,6 +124,11 @@ const SearchComponent = (props: Props) => {
           ค้นหา
         </Button>
       </StyledSearch>
+      {searchFromCard && (
+        <StyledSearch>
+          <Button onClick={() => cardSearching(schema)}>ค้นหาด้วยบัตร</Button>
+        </StyledSearch>
+      )}
       {role === "แอดมิน" && isAddBtn && (
         <StyledSearch>
           <Button
@@ -136,11 +141,6 @@ const SearchComponent = (props: Props) => {
           >
             {addBtnText}
           </Button>
-        </StyledSearch>
-      )}
-      {searchFromCard && (
-        <StyledSearch>
-          <Button onClick={() => cardSearching(schema)}>ค้นหาด้วยบัตร</Button>
         </StyledSearch>
       )}
     </StyledContainerSearch>

@@ -33,7 +33,7 @@ export default compose(
         const resp = await axios("GET", `${schema}?${query}`);
         const data = R.pathOr([], ["data", "data"], resp);
         if (R.isEmpty(data)) {
-          displayNotification("warning", "ยังไม่มีข้อมูลในระบบ !");
+          displayNotification("warning", "ไม่มีข้อมูลในระบบ !");
         } else {
           const { history } = props;
           var newQs = `?page=${oldQs.page}&limit=${oldQs.limit}&search=${idCard}`;
