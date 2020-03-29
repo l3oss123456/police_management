@@ -24,7 +24,10 @@ type Props = {
   setSelectedGender: Any,
   isSelectedRangeAge: Boolean,
   selectedRangeAge: String,
-  setSelectedRangeAge: Any
+  setSelectedRangeAge: Any,
+  searchFromCard: Boolean,
+  cardSearching: Any,
+  schema: String
 };
 
 const SearchComponent = (props: Props) => {
@@ -43,7 +46,10 @@ const SearchComponent = (props: Props) => {
     setSelectedGender,
     isSelectedRangeAge,
     selectedRangeAge,
-    setSelectedRangeAge
+    setSelectedRangeAge,
+    searchFromCard,
+    cardSearching,
+    schema
   } = props;
   const role = R.path(["role"], JSON.parse(getItemLocalStorage("userInfo")));
   const dateFormat = "YYYY-MM-DD";
@@ -130,6 +136,11 @@ const SearchComponent = (props: Props) => {
           >
             {addBtnText}
           </Button>
+        </StyledSearch>
+      )}
+      {searchFromCard && (
+        <StyledSearch>
+          <Button onClick={() => cardSearching(schema)}>ค้นหาด้วยบัตร</Button>
         </StyledSearch>
       )}
     </StyledContainerSearch>
