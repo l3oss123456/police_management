@@ -8,7 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 ReactDOM.render(<Routes />, document.getElementById("root"));
 
 // initial title
-document.title = "Management System";
+// document.title = "Management System";
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
