@@ -124,15 +124,7 @@ export default compose(
                       href="# "
                       onClick={() =>
                         R.isEmpty(record.agent)
-                          ? // ((userId = R.path(
-                            //     ["id"],
-                            //     JSON.parse(getItemLocalStorage("userInfo"))
-                            //   )),
-                            //   window.open(
-                            //     `https://police.netlify.com/home/${userId}/${record.id}`,
-                            //     "_blank"
-                            //   ))
-                            (setSelectedUserId(record.id),
+                          ? (setSelectedUserId(record.id),
                             setVisibleModal(true),
                             setAllAgent(
                               record.agent.map((agent, index) => {
