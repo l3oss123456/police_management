@@ -19,7 +19,7 @@ export default compose(
     cardSearching: props => async schema => {
       const cardInfo = await axios(
         "GET",
-        `https://1ae71657.ngrok.io/card-data?fbclid=IwAR0KVDiptNi072UOXCB9p96JaWQkgl9gwQiHxlDtwNQA-PPztm9N_zMLszQ`,
+        `https://3a412771.ngrok.io/card-data`,
         "",
         true
       );
