@@ -16,17 +16,17 @@ export default compose(
   withState("selectedRangeAge", "setSelectedRangeAge", "ทั้งหมด"),
 
   withHandlers({
-    cardSearching: props => async schema => {
+    cardSearching: (props) => async (schema) => {
       const cardInfo = await axios(
         "GET",
-        `https://3a412771.ngrok.io/card-data`,
+        `${process.env.REACT_APP_CARDURL}`,
         "",
         true
       );
       if (cardInfo.status === 200) {
         const { location } = props;
         const oldQs = qs.parse(location.search, {
-          ignoreQueryPrefix: true
+          ignoreQueryPrefix: true,
         });
         const idCard = R.path(["data", "idCardNo"], cardInfo);
         const query = `?page=${oldQs.page}&limit=${oldQs.limit}&search=${idCard}`;
@@ -44,17 +44,17 @@ export default compose(
         displayNotification("error", "กรุณาเสียบบัตรประชา่ชนเข้าเครื่อง !");
       }
     },
-    pushSearchUrl: props => async () => {
+    pushSearchUrl: (props) => async () => {
       const {
         searchValue,
         selectedGender,
         selectedRangeAge,
         history,
         location,
-        rangeDate
+        rangeDate,
       } = props;
       const oldQs = qs.parse(location.search, {
-        ignoreQueryPrefix: true
+        ignoreQueryPrefix: true,
       });
       const searchOptions = objectToQueryString({
         search: searchValue,
@@ -62,8 +62,8 @@ export default compose(
         age: selectedRangeAge === "ทั้งหมด" ? "" : selectedRangeAge,
         duration: !R.isEmpty(rangeDate) && [
           moment(rangeDate[0]).format("YYYY-MM-DD"),
-          moment(rangeDate[1]).format("YYYY-MM-DD")
-        ]
+          moment(rangeDate[1]).format("YYYY-MM-DD"),
+        ],
       });
       queryDefault.search = searchOptions;
       var newQs = "";
@@ -71,6 +71,6 @@ export default compose(
         ? (newQs = `?page=${oldQs.page}&limit=${oldQs.limit}`)
         : (newQs = `?page=${oldQs.page}&limit=${oldQs.limit}&${searchOptions}`);
       history.push(newQs);
-    }
+    },
   })
 );
