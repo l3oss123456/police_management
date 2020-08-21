@@ -20,7 +20,7 @@ type Props = {
   isPrint: Boolean,
   allAgent: Array,
   selectedAgent: Number,
-  setSelectedAgent: Any
+  setSelectedAgent: Any,
 };
 
 const ListingTable = (props: Props) => {
@@ -38,7 +38,7 @@ const ListingTable = (props: Props) => {
     setVisibleModal,
     allAgent,
     selectedAgent,
-    setSelectedAgent
+    setSelectedAgent,
   } = props;
   return (
     <ContainerListingTable>
@@ -72,7 +72,7 @@ const ListingTable = (props: Props) => {
               JSON.parse(getItemLocalStorage("userInfo"))
             );
             window.open(
-              `https://police.netlify.com/home/${userId}/${selectedUserId}`,
+              `https://police-print.netlify.com/home/${userId}/${selectedUserId}`,
               "_blank"
             );
             setVisibleModal(false);
@@ -84,7 +84,7 @@ const ListingTable = (props: Props) => {
             );
             // window.location.href = `https://police.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`;
             window.open(
-              `https://police.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`,
+              `https://police-print.netlify.com/home/${userId}/${selectedUserId}/${selectedAgent}`,
               "_blank"
             );
             setVisibleModal(false);
