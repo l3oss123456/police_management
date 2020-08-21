@@ -4,7 +4,7 @@ import Search from "../../components/Search/index";
 import Table from "../../components/ListingTable/index";
 import columns from "./components/tableUserManage/index";
 
-const userManage = props => {
+const userManage = (props) => {
   return (
     <div>
       <Layout
@@ -13,7 +13,7 @@ const userManage = props => {
         openKey="management"
       >
         <Search
-          externalUrl="https://festive-rosalind-dd31f0.netlify.com/"
+          externalUrl="https://police-frontend.netlify.com/"
           addBtnText="ผู้รับยา"
           schema="users"
           isAddBtn
@@ -25,7 +25,7 @@ const userManage = props => {
           tableColumns={columns}
           scrollSize={{
             width: window.innerWidth - 310 + "px",
-            height: window.innerHeight - 310 + "px"
+            height: window.innerHeight - 310 + "px",
           }}
           isPrint
         />
